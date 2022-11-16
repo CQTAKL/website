@@ -1,0 +1,315 @@
+.w .search-nav {
+    width: 100%;
+    height: 200px;
+    margin-top: 110px;
+    background-color: #fff;
+    padding: 18px 60px;
+    margin-bottom: 60px;
+}
+
+.search-nav-item {
+    width: 1080px;
+    height: 28px;
+    font-size: 14px;
+    color: black;
+    background-color: #fff;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.search-nav-item:last-child {
+    border: none;
+}
+
+.search-nav-item i {
+    display: inline-block;
+    width: 80px;
+    /* background-color: pink; */
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.search-nav-item span {
+    margin-right: 15px;
+}
+
+
+/* 主体部分 */
+.w .item {
+    width: 100%;
+    /* height: 1000px; */
+}
+
+/* 一级导航 */
+.item-title h2 {
+    width: 180px;
+    font-size: 32px;
+    background-color: #FCD088;
+    text-align: center;
+    margin: 0 auto;
+    color: #fff;
+    font-weight: normal;
+}
+
+.item-title-line {
+    width: 100%;
+    height: 6px;
+    background-color: #FCD088;
+}
+
+/* 一级导航的内容 */
+.item-body {
+    width: 100%;
+    /* height: 1000px; */
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background: -webkit-linear-gradient(top, rgba(252, 208, 136, 0.2), rgba(255, 255, 255, 0.1));
+}
+
+/* 更改其他一级导航栏的颜色 */
+/* 程序开发 */
+.w .item:nth-child(2) .item-title h2,
+.w .item:nth-child(2) .item-title-line {
+    background-color: rgb(255, 192, 203);
+}
+.w .item:nth-child(2) .item-body {
+    background: -webkit-linear-gradient(top, rgb(255, 192, 203, 0.2), rgba(255, 255, 255, 0.1));
+}
+
+/* 计算机科学 */
+.w .item:nth-child(3) .item-title h2,
+.w .item:nth-child(3) .item-title-line {
+    background-color: rgb(10, 208, 191);
+}
+.w .item:nth-child(3) .item-body {
+    background: -webkit-linear-gradient(top, rgb(10, 208, 191, 0.2), rgba(255, 255, 255, 0.1));
+}
+
+/* 数据方向 */
+.w .item:nth-child(4) .item-title h2,
+.w .item:nth-child(4) .item-title-line {
+    background-color: rgb(255, 111, 85);
+}
+.w .item:nth-child(4) .item-body {
+    background: -webkit-linear-gradient(top, rgb(255, 111, 85, 0.2), rgba(255, 255, 255, 0.1));
+}
+
+/* 智能科学 */
+.w .item:nth-child(5) .item-title h2,
+.w .item:nth-child(5) .item-title-line {
+    background-color: rgb(202, 110, 255);
+}
+.w .item:nth-child(5) .item-body {
+    background: -webkit-linear-gradient(top, rgb(202, 110, 255, 0.2), rgba(255, 255, 255, 0.1));
+}
+
+
+
+/* 二级导航 */
+.item-body-li {
+    position: relative;
+    width: 1044px;
+    /* height: 360px; */
+    margin: 0 auto;
+    margin-bottom: 80px;
+}
+
+/* 二级导航的上半部分 */
+.item-body-li-td {
+    width: 100%;
+    height: 40px;
+}
+
+/* 二级导航的标题 */
+.item-body-li-td i {
+    float: left;
+    font-size: 28px;
+    color: black;
+    /* font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-family: "Times New Roman", Times, serif;
+}
+
+/* 二级导航右侧我要发稿 进入讨论区 */
+.item-body-li-td span {
+    float: right;
+    font-size: 14px;
+    line-height: 50px;
+    margin-left: 20px;
+    font-family: "iconfont" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 二级导航的内容 */
+.item-body-li-bd {
+    width: 100%;
+    /* height: 400px; */
+    background-color: #fff;
+    padding: 15px 20px;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, .2);
+    border-radius: 15px;
+}
+
+/* 二级导航的每一项*/
+.item-body-li-bd ul li {
+    float: left;
+    width: 490px;
+    /* height: 60px; */
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 14px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+}
+
+.item-body-li-bd ul li:hover {
+    cursor: pointer;
+}
+
+.item-body-li-bd ul li:hover span {
+    font-weight: bold;
+    color:#71aeff;
+}
+
+.item-body-li-bd ul li:nth-child(even) {
+    float: right;
+}
+
+/* 每一项的图标 */
+.item-body-li-bd ul i {
+    display: inline-block;
+    font-family: "iconfont" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-right: 6px;
+}
+
+.item-body-li-bd ul li div {
+    color: black;
+    margin-bottom: 6px;
+}
+
+.item-body-li-bd ul li div i {
+    float: left;
+}
+
+.item-body-li-bd ul li div .fire {
+    color: red;
+}
+
+.item-body-li-bd ul li div .top {
+    color: rgb(0, 115, 255);
+}
+
+.item-body-li-bd ul li div .essen {
+    color: rgb(0, 176, 21);
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: bold;
+}
+
+/* .item-body-li-bd ul li div i:first-child {
+    color: red;
+} */
+.item-body-li-bd ul li div i:nth-child(2) {
+    
+    margin-right: 4px; /* 适应图标三空余过大问题 */
+}
+/* .item-body-li-bd ul li div i:nth-child(3) {    
+    
+} */
+
+.item-body-li-bd ul li div span {
+    float: left;
+    display: block;
+    font-weight: bold;
+    width: 365px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    white-space: nowrap;
+    /* background-color: pink; */
+}
+
+/* 每一项的内容 */
+.item-body-li-bd ul li>span {
+    float: left;
+    display: block;
+    width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 点击量 */
+.item-body-li-bd ul .Clicks {
+    float: right;
+    font-size: 14px;
+}
+
+.item-body-li-bd ul .collect {
+    float: right;
+    font-size: 18px;
+    line-height: 24px;
+    color: gold;
+    font-weight: bold;
+}
+
+.item-body-li-bd ul .Clicks i:first-child {
+    font-size: 16px;
+    margin-right: 2px;
+}
+
+/* 下拉上回箭头 */
+.item-body-drop-down {
+    position: absolute;
+    left: 50%;
+    bottom: -30px;
+    width: 100px;
+    height: 30px;
+    margin-left: -50px;
+    background-color: #fff;
+    font-size: 20px;
+    text-align: center;
+    line-height: 30px;
+    font-family: "iconfont" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    box-shadow: 8px 8px 12px rgba(0, 0, 0, .2);
+    border-radius: 0 0 15px 15px;
+}
+
+.item-body-drop-down:hover {
+    cursor: pointer;
+}
+
+/* 回顶部 */
+.back-top {
+    display: none;
+    position: fixed;
+    right: 0px;
+    bottom: 100px;
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    background-color: rgba(102, 102, 102,0.4);
+    border-radius: 5px;
+    font-size: 20px;
+    line-height: 50px;
+    text-align: center;
+    font-family: "iconfont" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.back-top:hover {
+    cursor: pointer;
+    border: 2px solid #666;
+    background-color: rgb(102, 102, 102);
+}
+

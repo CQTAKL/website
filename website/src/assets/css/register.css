@@ -1,0 +1,299 @@
+
+@font-face {
+    font-family: 'iconfont';
+    src: url('../font/iconfont.ttf?t=1657249290807') format('truetype');
+  }
+
+body {
+    background-color: gray;
+}
+
+a:hover {
+    color: black;
+}
+.w {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    /* margin-left: -305px; */
+    width: 610px;
+    z-index: 100;
+    /* margin: 0 auto; */
+}
+.logo  {
+    /* width: 66px;
+    height: 77px;
+    background: url('../imges/横底白字.png') no-repeat; */
+    width: 95px;
+    height: 55px;
+    background: url('../imges/logo_white_horizontal.png');
+    background-size: cover;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.line {
+    width: 314px;
+    height: 3px;
+    background-color: #fcd088;
+    margin: 0 auto;
+    margin-top: 9px;
+    margin-bottom: 18px;
+}
+.register {
+    width: 180px;
+    height: 71px;
+    border-top: 3px solid #fcd088;
+    color: #fff;
+    padding-top: 28px;
+    font-size: 28px;
+    line-height: 28px;
+    margin: 0 auto;
+    /* background-color: pink; */
+    text-align: center;
+}
+
+
+form {
+    position: relative;
+    width: 610px;
+    height: 420px;
+    background-color: #e4e4e4;
+    border-radius: 25px;
+    padding: 20px;
+    padding-top: 33px;
+    padding-right: 105px;
+    text-align: right;
+    color: gray;
+    font-size: 14px;
+    opacity: 1;
+    box-shadow: 10px 10px 55px #888888;
+    
+}
+form input {
+    width: 292px;
+    height: 33px;
+    border: 1px solid gray;
+    margin-bottom: 3px;
+    margin-top: 3px;
+    margin-left: 23px;
+    padding: 2px 10px;
+    padding-right: 30px;
+    /* color: #7a7a75; */
+    color: black;
+    font-size: 14px;
+}
+
+form i{
+    float: left;
+    margin-left: 195px;
+    font-size: 12px;
+    color: red;
+}
+
+form .label {
+    color: black;
+    font-size: 18px;
+}
+form #verification {
+    width: 180px;
+    padding-right: 10px;
+}
+form #get_verification {
+    display: inline-block;
+    /* position: absolute; */
+    width: 90px;
+    height: 33px;
+    border: 1px solid gray;
+    text-align: center;
+    font-size: 17px;
+    line-height: 11px;
+    color: black;
+    padding: 10px;
+    background-color: #fff;
+    margin-left: 22px;
+}
+
+form #get_verification:hover {
+    cursor: pointer;
+}
+form #commit {
+    display: inline-block;
+    position: relative;
+    width: 292px;
+    height: 31px;
+    text-align: center;
+    border: 1px solid gray;
+    margin-bottom: 20px;
+    color: black;
+    background-color: #fff;
+    font-size: 18px;
+    transition: padding-right .4s ease;
+}
+
+form #agree {
+    width: 200px;
+    height: 16px;
+    line-height: 16px;
+    font-size: 14px;
+    /* background-color: pink; */
+    text-align: left;
+    margin-left: 193px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+form #icon_agree {
+    font-family: "iconfont" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-right: 4px;
+    font-size: 16px;
+    /* color: blue; */
+}
+form #icon_agree:hover {
+    cursor: pointer;
+}
+form #agree a {
+    display: inline-block;
+    color: #f74444;
+}
+form li {
+    position: absolute;
+    right: 100px;
+    top: -5px;
+    font-family: "iconfont" !important;
+    font-size: 26px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    opacity: 0;
+    transition: opacity .4s ease;
+    transition: right .4s ease;
+}
+
+form #commit:hover {
+    cursor: pointer;
+    padding-right: 30px;
+    background-color: rgb(252, 253, 250);
+}
+form #commit:hover li {
+    opacity: 0.8;
+    right: 116px;
+}
+
+form .other {
+    position: absolute;
+    bottom: 60px;
+    left: 215px;
+}
+
+form .other #question {
+    margin-left: 98px;
+}
+
+form .other #login {
+    color: #f74444;
+}
+
+form .register_other {
+    position: absolute;
+    bottom: 20px;
+    left: 215px;
+    width: 200px;
+    height: 30px;
+    text-align: left;
+    line-height: 30px;
+    /* background-color: pink; */
+}
+form .register_other #qq{
+    display: inline-block;
+    font-family: "iconfont" !important;
+    font-size: 25px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-left: 20px;
+}
+form .register_other #weixin{
+    display: inline-block;
+    font-family: "iconfont" !important;
+    font-size: 21px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-left: 20px;
+}
+
+.alert {
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-left: -200px;
+    width: 400px;
+    height: 80px;
+    background-color: #fff;
+    z-index: 100;
+    opacity: 0;
+}
+.alert_move {
+    animation: alert_move 0.8s ease forwards;
+}
+@keyframes alert_move {
+    0% {
+        opacity: 0;
+        top: 3%;
+    }
+
+    100% {
+        opacity: 1;
+        top: 10%;
+    }
+}
+.alert .content {
+    position: relative;
+    font-size: 14px;
+}
+.alert li {
+    position: absolute;
+    top: 2px;
+    right: 10px;
+    font-size: 16px;
+}
+.alert li:hover {
+    cursor: pointer;
+    color: black;
+}
+
+form .eye1 {
+    position: absolute;
+    top: 98px;
+    right: 109px;
+    font-family: "iconfont" !important;
+    font-size: 20px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: black;
+}
+form .eye1:hover {
+    cursor: pointer;
+}
+form .eye2 {
+    position: absolute;
+    top: 158px;
+    right: 109px;
+    font-family: "iconfont" !important;
+    font-size: 20px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: black;
+}
+form .eye2:hover {
+    cursor: pointer;
+}
+form p {
+    display: none;
+}

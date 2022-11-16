@@ -1,0 +1,309 @@
+#fileListTitle{
+    margin-top: 100px;
+    width: 100%;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    font-size: 28px;
+    border-bottom: 2px solid #ccc;
+    /* background-color: #ccc; */
+}
+
+#fileListSearch {
+    width: 100%;
+    /* height: 200px; */
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 3px 3px 14px #eee;
+    margin-top: 20px;
+    padding: 20px 40px;
+}
+
+#fileListSearch input {
+    width: 1035px;
+    height: 45px;
+    border-radius: 20px 0 0 20px;
+    border: 1px solid orange;
+    padding: 0 30px;
+    margin-bottom: 15px;
+}
+
+#fileListSearch button{
+    display: inline-block;
+    width: 80px;
+    height: 45px;
+    border-radius: 0 20px 20px 0;
+    background-color: orange;
+    color: #fff;
+    font-size: 16px;
+    vertical-align: top;
+}
+#fileListSearch button:hover{
+    background-color: rgb(255, 173, 20);
+}
+
+#fileListSearch span {
+    font-size: 14px;
+    margin-left: 31px;
+    padding-right: 30px;
+    border-right: 1px solid #ccc;
+}
+
+#fileListSearch span:nth-of-type(1){
+    border-right: none;
+    margin-right: 0;
+    padding-right: 0;
+}
+#fileListSearch span:last-of-type {
+    border-right: none;
+    margin-right: 0;
+    padding-right: 0;
+}
+
+#fileListBox{
+    width: 100%;
+    /* height: 200px; */
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 3px 3px 14px #eee;
+    margin-top: 30px;
+    padding: 20px 40px;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+#fileListSetting {
+    width: 100%;
+    /* height: 100px; */
+    /* background-color: pink; */
+    margin-bottom: 20px;
+}
+
+#fileListSetting label{
+    font-size: 14px;
+}
+
+#fileListSetting select {
+    width: 140px;
+    height: 30px;
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-right: 25px;
+    /* 去掉选中框线加粗 */
+    outline: none;
+    /*去掉默认的下拉三角*/
+    appearance:none;  
+    -moz-appearance:none;  
+    -webkit-appearance:none;
+    background: url("../imges/arow.png") no-repeat 95% 50% transparent;
+    background-size: 20px;
+    padding: 0 10px;
+}
+
+#fileListSetting select:nth-of-type(4){
+    width: 70px;
+}
+
+#fileListSetting select:focus{
+    border-color: orange;
+}
+
+#fileListSort {
+    float: right;
+    height: 40px;
+}
+
+#fileListSort a {
+    float: left;
+    width: 60px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    text-align: center;
+    margin-left: 15px;
+    color: black;  
+}
+
+#fileListSort a:first-child {
+    margin-left: 0;
+}
+
+#fileListSort a:hover {
+    cursor: pointer;
+    color: orange;
+    font-weight: bold;
+}
+
+#fileListSort a::after{
+    font-size: 12px;
+    margin-left: 5px;
+    content: "\ee31";
+    font-family: "iconfont" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#fileList {
+    width: 100%;
+    max-height: 1430px;
+    background-color: #f7f8f9;
+    font-size: 14px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#fileList .file{
+    position: relative;
+    width: 90%;
+    height: 60px;
+    background-color: #fff;
+    margin: 10px auto;
+    padding: 10px;
+    padding-left: 20px;
+    box-shadow: 3px 3px 24px #eee;
+    border: 1px solid #fff;
+    border-radius: 10px;
+}
+#fileList .file:hover{
+    border: 1px solid orange;
+    box-shadow: 3px 3px 10px #ccc;
+}
+
+#fileList .file>span {
+    color: #b7b7b7;
+    font-size: 12px;
+}
+
+#fileList .file .title{
+    font-size: 16px;
+    font-weight: bold;
+    color: #666666;
+}
+#fileList .fileOption {
+    position: absolute;
+    right: 0;
+    top: 15px;
+    width: 260px;
+    height: 30px;
+    /* background-color: red; */
+}
+
+#fileList .fileOption li{
+    float: left;
+    margin-left: 35px;
+}
+#fileList .fileOption li:hover{
+    cursor: pointer;
+}
+
+#fileList .fileOption li:last-child {
+    position: relative;
+}
+
+#fileList .fileOption li:last-child:hover ul{
+    display: block;
+}
+
+#fileList .fileOption li:last-child .otherOption{
+    position: absolute;
+    display: none;
+    z-index: 10;
+    width: 90px;
+    /* height: 200px; */
+    right: -68px;
+    top: 27px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px #ccc;
+    padding: 10px 0;
+}
+#fileList .fileOption li:last-child .otherOption:hover{
+    display: block;
+}
+
+#fileList .fileOption li:last-child .otherOption li{
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 30px;
+    margin: 0;
+}
+#fileList .fileOption li:last-child .otherOption li:hover{
+    background-color: orange;
+    color: #fff;
+}
+
+#fileList .fileOption a{
+    font-size: 20px;
+    font-family: "iconfont" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+#fileList .fileOption span{
+    font-size: 16px;
+    margin-left: 5px;
+}
+
+.jumpBar {
+    position: relative;
+    height: 35px;
+    width: 100%;
+    text-align: center;
+    /* background-color: pink; */
+    margin: 30px auto;
+}
+
+.jumpBar ul {
+    height: 35px;
+    display: inline-block;
+}
+
+.jumpBar ul li {
+    float: left;
+}
+    
+.jumpBar a {
+    display: inline-block;
+    color: black;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    /* border: 1px solid gray; */
+    background-color: #fff;
+    line-height: 35px;
+    margin-left: 15px;
+    font-family: "iconfont" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    border-radius: 10px;
+    font-size: 16px;
+    box-shadow: 4px 3px 4px 1px #e9e7e7;
+}
+
+.jumpBar a:hover {
+    cursor: pointer;
+    border: 1px solid gray;
+}
+.jumpBar li:nth-child(n+2) {
+    margin-left: 10px;
+}
+
+.jumpBar #turnLeft_fast {
+    font-size: 21px;
+}
+
+.jumpBar #turnLeft {
+    font-size: 14px;
+}
+
+.jumpBar #turnRight {
+    font-size: 19px;
+}
+
+.jumpBar #turnRight_fast {
+    font-size: 21px;
+}

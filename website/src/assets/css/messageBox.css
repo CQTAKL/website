@@ -1,0 +1,235 @@
+#messageBoxTable {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    border-bottom: 1px solid #ccc;
+    margin-top: 102px;
+}
+
+#messageBoxTable li{
+    position: relative;
+    float: left;
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    text-align: left;
+    padding-left: 15px;
+    margin-right: 10px;
+    border-radius: 10px 10px 0 0;
+}
+
+#messageBoxTable li:hover {
+    cursor: pointer;
+    background-color: rgb(255, 199, 95);
+    color: #fff;
+    font-weight: bold;
+}
+.messageBoxChecked {
+    background-color: rgb(255, 199, 95);
+    color: #fff;
+    font-weight: bold;
+}
+
+#messageBoxTable li i{
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    /* width: 40px; */
+    padding: 2px;
+    height: 20px;
+    background-color: tomato;
+    color: #fff;
+    border-radius: 9px 9px 9px 0;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+#messageBoxTable a {
+    float: right;
+    width: 100px;
+    height: 40px;
+    /* background-color: pink; */
+    text-align: center;
+    line-height: 40px;
+}
+
+#messageBoxTable a:hover{
+    cursor: pointer;
+}
+
+#messageBoxDetil {
+    width: 100%;
+    /* height: 100px; */
+    margin-top: 30px;
+    max-height: 1000px;
+    min-height: 500px;
+    /* height: 400px; */
+    /* background-color: pink; */
+    /* border: 1px solid #ccc; */
+}
+
+#messageBoxDetil h2{
+    display: none;
+    width: 100%;
+    font-size: 18px;
+    text-align: center;
+}
+
+#messageBoxDetil li {
+    position: relative;
+    width: 1130px;
+    height: 80px;
+    background-color: #fff;
+    margin-bottom: 20px;
+    border-radius: 20px 0 0 20px;
+    box-shadow: 1px 1px 14px #eee;
+    padding: 10px 25px;
+}
+
+#messageBoxDetil .messageBox-left{
+    float: left;
+    width: 60px;
+    height: 60px;
+    background-color: orange;
+    border-radius: 100%;
+    text-align: center;
+}
+
+#messageBoxDetil .messageBox-left i {
+    font-family: "iconfont" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 36px;
+    color: #fff;
+    line-height: 60px;
+}
+
+#messageBoxDetil .messageBox-middle {
+    float: left;
+    height: 60px;
+    /* background-color: pink; */
+    margin-left: 20px;
+}
+#messageBoxDetil .messageBox-middle p{
+    font-size: 14px;
+    line-height: 20px;
+}
+
+#messageBoxDetil .messageBox-middle p:first-child {
+
+    margin: 6px 0;
+}
+
+#messageBoxDetil .messageBox-right {
+    float: right;
+    height: 60px;
+    /* background-color: pink; */
+    margin-left: 20px;
+
+}
+#messageBoxDetil .messageBox-right p{
+    font-size: 14px;
+    line-height: 20px;
+}
+
+#messageBoxDetil .messageBox-right p:first-child {
+    margin: 6px 0;
+}
+
+#messageBoxDetil .messageBox-right a {
+    display: block;
+    height: 20px;
+    text-align: right;
+    line-height: 20px;
+    font-size: 14px;
+    color: rgb(1, 167, 233);
+}
+
+#messageBoxDetil .messageBox-right a:hover{
+    cursor: pointer;
+    color: rgb(49, 197, 255)
+}
+
+
+#messageBoxDetil li .messageBoxDelete{
+    position: absolute;
+    right: -70px;
+    top: 0px;
+    width: 70px;
+    height: 80px;
+    border-radius: 0 20px 20px 0;
+    box-shadow: 1px 1px 14px #eee;
+    background-color: #999;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    line-height: 80px;
+}
+
+#messageBoxDetil li .messageBoxDelete:hover {
+    cursor: pointer;
+    background-color: rgb(184, 184, 184);
+    font-size: 17px;
+}
+
+.jumpBar {
+    position: relative;
+    height: 35px;
+    width: 100%;
+    text-align: center;
+    /* background-color: pink; */
+    margin: 30px auto;
+}
+
+.jumpBar ul {
+    height: 35px;
+    display: inline-block;
+}
+
+.jumpBar ul li {
+    float: left;
+}
+    
+.jumpBar a {
+    display: inline-block;
+    color: black;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    /* border: 1px solid gray; */
+    background-color: #fff;
+    line-height: 35px;
+    margin-left: 15px;
+    font-family: "iconfont" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    border-radius: 10px;
+    font-size: 16px;
+    box-shadow: 4px 3px 4px 1px #e9e7e7;
+}
+
+.jumpBar a:hover {
+    cursor: pointer;
+    border: 1px solid gray;
+}
+.jumpBar li:nth-child(n+2) {
+    margin-left: 10px;
+}
+
+.jumpBar #turnLeft_fast {
+    font-size: 21px;
+}
+
+.jumpBar #turnLeft {
+    font-size: 14px;
+}
+
+.jumpBar #turnRight {
+    font-size: 19px;
+}
+
+.jumpBar #turnRight_fast {
+    font-size: 21px;
+}

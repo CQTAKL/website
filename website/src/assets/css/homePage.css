@@ -1,0 +1,412 @@
+#personInfo {
+    width: 100%;
+    height: 130px; 
+    font-size: 16px;
+    background-color: #fff;
+    margin-top: 100px;
+    margin-bottom: 30px;
+    padding: 10px 22px;
+    padding-right: 0;
+    border-radius: 15px;
+    box-shadow: 1px 1px 12px rgba(0,0,0,0.2);
+}
+
+.personInfo-top {
+    position: relative;
+    width: 100%;
+    height: 52px;
+    margin-bottom: 10px;
+    /* background-color: pink; */
+}
+
+.personInfo-top img {
+    position: absolute;
+    top: -30px;
+    left: 0;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    border: 2px solid gold;
+    background-color: #ccc;
+}
+
+.personInfo-top .name {
+    margin-left: 87px;
+    font-size: 20px;
+    line-height: 20px;
+    color: black;
+    line-height: 40px;
+}
+
+.personInfo-top .icon {
+    font-size: 18px;
+    font-family: "iconfont" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: black;
+}
+
+.personInfo-top .personInfoData {
+    float: right;
+    width: 95px;
+    height: 52px;
+    text-align: center;
+    color: black;
+    border-right: 1px solid rgb(233, 232, 232);
+}
+
+
+.personInfo-top .personInfoData:nth-child(4) {
+    border: none;
+}
+
+.personInfo-top .personInfoData:nth-child(4):hover,
+.personInfo-top .personInfoData:nth-child(5):hover,
+.personInfo-top .personInfoData:nth-child(6):hover
+{
+    cursor: pointer;
+}
+
+.personInfo-bottom {
+    padding-right: 32px;
+}
+
+.personInfo-bottom span {
+    display: inline-block;
+    width: 550px;   
+    word-wrap: break-word;
+}
+
+.personInfo-bottom a {
+    float: right;
+    width: 80px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid #ccc;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.personInfo-bottom a:last-child {
+    color: red;
+    border: 1px solid red;
+}
+.personInfo-bottom a:last-child:hover {
+    background-color: red;
+    color: #fff;
+}
+
+.personInfo-bottom a:hover {
+    cursor: pointer;
+}
+
+
+/* 个人主页功能 */
+#personTool {
+    width: 100%;
+    min-height: 500px;
+    font-size: 16px;
+    /* background-color: pink; */
+    margin-bottom: 50px;
+}
+
+.personTool-left {
+    float: left;
+    width: 250px;
+    /* height: 550px; */
+    padding: 20px 0px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 1px 1px 12px rgba(0,0,0,0.2);
+}
+
+.personTool-left ul li>a {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 18px;
+    color: black;
+    padding-left: 20px;
+    /* background-color: red; */
+}
+
+.personTool-left ul li>a i {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    font-size: 16px;
+    color: black;
+    font-family: "iconfont" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.personTool-left ul li>a:hover {
+    cursor: pointer;
+    background-color: #71aeff !important;
+    color: #fff !important;    
+}
+
+.personTool-left ul li>a:hover i {
+    color: #fff !important;
+}
+
+/* 二级栏 */
+/* 默认隐藏 */
+.personTool-left ul li ul {
+    display: none; 
+}
+/* 第一个ul不隐藏 */
+.personTool-left ul li:first-child ul {
+    display: block;
+}
+.personTool-left ul li ul li {
+    font-size: 16px;
+    padding-left: 40px;
+    color: black;
+}
+.personTool-left ul li ul li:hover {
+    cursor: pointer;
+    background-color: #71aeff !important;
+    color: #fff !important;    
+}
+
+
+
+/* 右边内容 */
+.personTool-right {
+    float: right;
+    width: 920px;
+    min-height: 500px;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px 22px;
+    box-shadow: 1px 1px 12px rgba(0,0,0,0.2);
+}
+
+.personTool-right-td {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 20px;
+    /* background-color: pink; */
+    border-bottom: 1px solid rgb(242, 242, 242);
+}
+
+.personTool-right-td a {
+    float: left;
+    width: 60px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    text-align: center;
+    margin-left: 15px;
+    color: black;   
+}
+
+.personTool-right-td a:hover {
+    cursor: pointer;
+    color: #3172c7;
+    font-weight: bold;
+}
+
+.personTool-right-td a::after {
+    font-size: 12px;
+    margin-left: 5px;
+    content: "\ee31";
+    font-family: "iconfont" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.personTool-right-td input {
+    float: right;
+    width: 300px;
+    height: 40px;
+    border-radius: 20px;
+    padding: 0 20px;
+    padding-right: 35px;
+    border: 1px solid #ccc;
+    background-color: rgb(220, 219, 219);
+}
+
+.personTool-right-td i {
+    position: absolute;
+    top: 7px;
+    right: 10px;
+    font-size: 16px;
+    font-family: "iconfont" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.personTool-right-td i:hover {
+    cursor: pointer;
+}
+
+/* 右下侧内容块 */
+
+
+.personTool-right-bd li {
+    position: relative;
+    padding: 0 10px;
+    /* border: 1px solid rgba(113, 174, 255,0.2);
+    background-color: rgba(113, 174, 255,0.25); */
+    border: 1px solid rgba(113, 174, 255,0.2);
+    background-color: rgba(152, 197, 255, 0.25);
+    margin-bottom: 10px;
+    border-radius: 10px;
+    width: 84%;
+    height: 80px;
+}
+
+.personTool-right-bd .other_collect_length{
+    width: 92%;
+}
+
+.personTool-right-bd .self_collect_length{
+    width: 100%;
+}
+
+.personTool-right-bd li:hover {
+    cursor: pointer;
+    box-shadow: 1px 1px 12px rgba(0,0,0,0.2);
+}
+
+.personTool-right-bd .passage_bd {
+    width: 100%;
+    height: 30px;
+    /* background-color: pink; */
+    font-size: 14px;
+    color: #787171;
+}
+
+.personTool-right-bd .passage_bd h2 {
+    font-size: 16px;
+    color: black;
+    font-weight: bold;
+    margin: 0 auto;
+    margin-bottom: 4px;
+}
+
+.personTool-right-bd .passage_bd p {
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; 
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.personTool-right-bd .passage_ft {
+    position: relative;
+    width: 100%;
+    height: 19px;
+    /* background-color: pink; */
+    color: #999999;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.personTool-right-bd .passage_ft span:nth-child(-n+2){
+    float: left;
+    line-height: 19px;
+    margin-right: 10px;
+}
+.personTool-right-bd .passage_ft span:nth-child(n+3) {
+    float: right;
+    line-height: 19px;
+    margin-left: 5px;
+    font-family: "iconfont" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.personTool-right-bd .passage_ft span:nth-child(2){
+    margin-left: 20px;
+}
+.personTool-right-bd .passage_ft span:nth-child(4) {
+    margin-left: 20px;
+}
+
+
+.personTool-right-bd .passage_label{
+    position: absolute;
+    top: 3px;
+    right: 0;
+    width: 130px;
+    height: 20px;
+    /* background-color: pink; */
+}
+
+.personTool-right-bd .passage_label span{
+    float: left;
+    width: 30px;
+    height: 20px;
+    /* margin-top: 5px; */
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+.personTool-right-bd .passage_label .top{
+    background-color: #d9e9ff; 
+    color: #4191ff;
+}
+
+.personTool-right-bd .passage_label .prime{
+    background-color: #def1d4;
+    color: #5ac4ad;
+}
+
+.personTool-right-bd .passage_label .hot{
+    background-color: rgb(255, 210, 218);
+    color: rgb(241, 119, 139);
+}
+
+.personTool-right-bd .passage_modify,
+.personTool-right-bd .passage_delete,
+.personTool-right-bd .passage_like,
+.personTool-right-bd .passage_collect{
+    position: absolute;
+    top: 20px;
+    right: -70px;
+    width: 60px;
+    height: 40px;
+    background-color: rgb(143, 193, 255);
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    margin-left: 10px;
+    border-radius: 15px;
+}
+
+.personTool-right-bd .passage_modify:hover,
+.personTool-right-bd .passage_delete:hover,
+.personTool-right-bd .passage_like:hover,
+.personTool-right-bd .passage_collect:hover{
+    background-color: rgb(113, 174, 255);
+    /* cursor: pointer; */
+}
+
+.personTool-right-bd .passage_modify,
+.personTool-right-bd .passage_collect{
+    right: -140px;
+}
+
+
+
+
+
+
+
+

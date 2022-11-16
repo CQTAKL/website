@@ -1,0 +1,159 @@
+.main {
+    margin-top: 113px;
+}
+.main h1 {
+    text-align: center;
+    color: black;
+}
+.main .search {
+    width: 800px;
+    /* height: 100px; */
+    margin: 10px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 4px 3px 4px 1px #e9e7e7;
+    padding: 30px 40px;
+    font-size: 14px;
+    color: black;
+}
+
+.main .search label {
+    line-height: 30px;
+}
+
+.main .search select {
+    width: 250px;
+    height: 30px;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 2px solid black;
+}
+
+.main .search select:hover {
+    cursor: pointer;
+}
+
+.main .search select:first-of-type {
+    margin-right: 50px;
+}
+
+.main .search input {
+    margin-top: 20px;
+    width: 690px;
+    height: 35px;
+    border: 2px solid #f8bb61;
+    border-radius: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.main table {
+    width: 100%;
+    /* height: 100px; */
+    text-align: center;
+    font-size: 14px;
+    vertical-align: middle;
+    color: black;
+    border-spacing: 0px; /*边框距离*/
+    /* table-layout: fixed;  */
+    word-wrap: break-word;
+    background-color: #fff;
+    /* table-layout: fixed; */
+}
+
+/* 设定边框 */
+.main table td{
+    border-right: 1px solid #999;
+    border-bottom: 1px solid #999;
+}
+.main table th {
+    border: 1px solid #999;
+    border-left: 0;
+}
+.main table td:first-child,
+.main table th:first-child {
+    border-left: 1px solid #999;
+}
+
+/* 设定每列比例 */
+.main table td:nth-child(1),
+.main table th:nth-child(1) {
+    width: 5%;
+}
+.main table td:nth-child(2),
+.main table th:nth-child(2) {
+    width: 40%;
+}
+.main table td:nth-child(3),
+.main table th:nth-child(3) {
+    width: 15%;
+}
+.main table td:nth-child(4),
+.main table th:nth-child(4) {
+    width: 20%;
+}
+.main table td:nth-child(5),
+.main table th:nth-child(5) {
+    width: 20%;
+}
+
+/* 设定颜色 */
+.main table th {
+    background-color: rgb(205, 205, 205);
+}
+.main table tr:nth-child(odd) {
+    background-color: rgb(236, 236, 236);
+}
+/* 设定高度 */
+.main table th {
+    height: 40px;
+}
+.main table td {
+    height: 40px;
+}
+
+a {
+    color: black;
+}
+.main table td a {
+    display: inline-block;
+    width: 40px;
+    height: 25px;
+    line-height: 25px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #fff;
+    font-weight: bold;
+    background-color: rgb(248, 187, 97);
+    margin-left: 5px;
+}
+
+.main table td .toHelp {
+    background-color: rgb(142, 173, 96);
+}
+
+.main table td .toNotice {
+    background-color: skyblue;
+}
+
+.main .explain {
+    width: 800px;
+    margin: 40px auto;
+}
+
+.main .explain p {
+    /* 首行空一格 */
+    /* text-indent:1em; */
+    color: black;
+    font-size: 14px;
+    line-height: 40px;
+    margin-bottom: 10px;
+    padding: 0 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 4px 3px 4px 1px #e9e7e7;
+    /* word-break: break-all; */
+}
+

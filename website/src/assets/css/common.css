@@ -1,0 +1,575 @@
+@font-face {
+    font-family: 'iconfont';
+    src: url('../font/iconfont.ttf?t=1657249290807') format('truetype');
+}
+body {
+    background-color: #f7f8f9;
+    font-size: 0;
+}
+
+/* 版心 */
+.w {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+a:hover {
+    color: black;
+}
+
+/* 遮罩 */
+.cover {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 100;
+}
+
+.show {
+    display: block;
+}
+
+/* 遮罩上面的通知 */
+.inform{
+    position: relative;
+    display: none;
+    left: 50%;
+    top: 50%;
+    margin-left: -200px;
+    margin-top: -100px;
+    width: 360px;
+    /* height: 200px; */
+    background-color: #fff;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 20px;
+    padding-top: 35px;
+    box-shadow: 1px 1px 4px 1px #c5c7c8;
+}
+
+.cover .inform p {
+    width: 100%;
+    height: 60px;
+    /* overflow: hidden; */
+    /* background-color: pink; */
+    color: black;
+    line-height: 30px;
+    text-align: left;
+    /* text-indent: 2rem; */
+    
+}
+
+.cover .inform a {
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    border: 1px solid gray;
+    text-align: center;
+    line-height: 30px;
+    margin-top: 15px;
+    margin-left: 30px
+}
+
+.cover .inform #yes {
+    margin-right: 25px;
+}
+
+.cover .inform #yes:hover {
+    cursor: pointer;
+}
+
+.cover .inform #no:hover {
+    cursor: pointer;
+}
+
+.alert {
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-left: -200px;
+    width: 400px;
+    height: 80px;
+    text-align: left;
+    background-color: #fff;
+    z-index: 100;
+    opacity: 0;
+    padding-top: 13px;
+    box-shadow: 1px 1px 14px #ccc;
+}
+
+.alert h2 {
+    font-size: 18px;
+}
+.alert_move {
+    animation: alert_move 0.5s ease forwards;
+}
+@keyframes alert_move {
+    0% {
+        opacity: 0;
+        top: 0%;
+    }
+
+    100% {
+        opacity: 1;
+        top: 5%;
+    }
+}
+.alert .content {
+    position: relative;
+    font-size: 14px;
+}
+.alert li {
+    position: absolute;
+    top: 2px;
+    right: 10px;
+    font-size: 16px;
+}
+.alert li:hover {
+    cursor: pointer;
+    color: black;
+}
+
+/* 头部导航栏 */
+.nav {
+    position: fixed;
+    width: 100%;
+    height: 60px;
+    top:0;
+    background-color: black;
+    z-index: 20;
+}
+
+.nav .logo {
+    float: left;
+    width: 90px;
+    height: 50px;
+    /* background-color: pink; */
+    background: url('../imges/logo_white_horizontal.png') no-repeat;
+    background-size: cover;
+    margin-top: 5px;
+    margin-right: 20px;
+}
+
+
+.nav .nav_lf {
+    float: left;
+}
+
+.nav .nav_lf>ul>li{
+    position: relative;
+    float: left;
+    margin-left: 50px;
+}
+
+.nav .nav_lf>ul>li>a{
+    display: block;
+    height: 60px;
+    line-height: 60px;
+    font-size: 16px;
+    color: #fff;
+}
+
+.nav .nav_lf>ul>li>a:hover + ul{
+    display: block;
+}
+
+.nav .nav_lf>ul>li>ul{
+    display: none;
+    position: absolute;
+    left: -10px;
+    width: 100px;
+    background-color: pink;
+    border-radius: 0 0 10px 10px;
+    overflow: hidden;
+}
+
+.nav .nav_lf>ul>li>ul:hover{
+    display: block;
+}
+
+.nav .nav_lf>ul>li>ul>li{
+    width: 100px;
+    padding-left: 10px;
+    line-height: 35px;
+    font-size: 14px;
+    text-align: left;
+    background-color: rgb(83, 83, 83);
+}
+
+.nav .nav_lf>ul>li>ul>li:hover{
+    background-color: rgb(48, 46, 46);
+}
+
+.nav .nav_lf>ul>li>ul>li>a{
+    color: #fff;
+}
+
+.nav .nav_ri {
+    float: right;
+    font-size: 16px;
+}
+
+.nav .nav_ri li {
+    float: right;
+    /* width: 75px; */
+    height: 60px;
+    padding: 0 10px;
+    text-align: center;
+}
+
+.nav .nav_ri li a {
+    line-height: 60px;
+    color: #fff;
+}
+
+#person {
+    position: relative;
+    width: 150px;
+    /* height: 400px; */
+    /* background-color: #808080; */
+    padding: 0;
+    /* padding-top: 55px; */
+    margin-right: 60px;
+}
+
+#person img{
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    right: 0;
+    top: 8px;
+    /* background-color: pink; */
+    border-radius: 100%;
+}
+
+#person i{
+    position: absolute;
+    right: -31px;
+    top: 8px;
+    /* width: 40px; */
+    padding: 2px;
+    height: 20px;
+    background-color: tomato;
+    color: #fff;
+    border-radius: 9px 9px 9px 0;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+#person img:hover{
+    cursor: pointer;
+}
+
+#person img:hover + ul{
+    display: block;
+}
+
+#person ul {
+    position: absolute;
+    top: 52px;
+    right: -90px;
+    display: none;
+    background-color:rgb(83, 83, 83);
+    width: 100%;
+    border-radius: 0 0 10px 10px;
+    overflow: hidden;
+}
+
+#person ul:hover {
+    display: block;
+}
+
+#person ul li{
+    position: relative;
+    width: 150px;
+    height: 35px;
+    padding: 0;
+}
+
+#person ul span {
+    display: block;
+    width: 150px;
+    height: 8px;
+    background-color: black;
+}
+
+#person ul span:hover{
+    cursor: pointer;
+}
+
+
+#person ul li a {
+    display: block;
+    /* width: 50px; */
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+    font-size: 14px;
+    text-align: left;
+    padding-left: 15px;
+}
+
+#person ul li:hover {
+    background-color: #302e2e;
+}
+
+#person ul li:hover ~ ul {
+    display: block;
+}
+
+#person #collect{
+    position: relative;
+}
+
+#person>ul>li>i{
+    position: absolute;
+    right: 75px;
+    top: 3px;
+    /* width: 40px; */
+    padding: 2px;
+    height: 20px;
+    background-color: tomato;
+    color: #fff;
+    border-radius: 9px 9px 9px 0;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+/* 官方公告 */
+.announcement {
+    position: fixed;
+    width: 1200px;
+    height: 43px;
+    top: 60px;
+    font-size: 14px;
+    vertical-align: middle;
+    background-color: #f7f8f9;
+    z-index: 10;
+}
+.announcement .guangbo {
+    float: left;
+    margin: 5px;
+    width: 92px;
+    height: 24px;
+    margin-top: 9px;
+    margin-right: 15px;
+    background: url('../imges/guangbo.png') no-repeat;
+    background-size: cover;
+}
+.announcement #scrollBar {
+    float: left;
+    width: 980px;
+    height: 43px;
+    overflow: hidden;
+}
+
+.announcement #scrollBar li {
+    line-height: 43px;
+    height: 43px;
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.footer {
+    width: 100%;
+    /* height: 773px; */
+    background-color: #323200;
+}
+/* 底部第一层 */
+.footer .footer_first {
+    width: 100%;
+    height: 433px;
+    border-bottom: 1px solid #fff;
+    text-align: center;
+    padding-top: 15px;
+}
+.footer .footer_first .rankImg {
+    width: 180px;
+    height: 90px;
+    background-color: gray;
+    margin: 0 auto;
+}
+.footer .footer_first h2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #FCD088;
+    font-size: 20px;
+}
+.footer .footer_first ul li {
+    float: left;
+    width: 200px;
+    height: 250px;
+    margin-left: 133px;
+}
+.footer .footer_first ul li:first-child {
+    margin-left: 0;
+}
+.footer .footer_first ul li .headshot{
+    width: 140px;
+    height: 140px;
+    border-radius: 100%;
+    margin: 46px auto;
+    margin-bottom: 16px;
+    background-color: gray;
+    border: 3px solid #FCD088;
+}
+.footer .footer_first ul li span {
+    color: #FCD088;
+    font-size: 16px;
+    line-height: 30px;
+}
+/* 底部第二层 */
+.footer .footer_second {
+    width: 100%;
+    height: 250px;
+    border-bottom: 1px solid #fff;
+    color: #A3AAAA;
+}
+
+.footer .footer_second li {
+    float: left;
+    width: 300px;
+    height: 250px;
+    margin-left: 150px;
+    /* background-color: pink; */
+    padding: 30px;
+    text-align: left;
+    font-size: 14px;
+}
+.footer .footer_second li:first-child {
+    margin-left: 0;
+}
+
+.footer .footer_second li h3 {
+    font-size: 20px;
+    color: #fff;
+    font-weight: 400;
+}
+
+.footer .footer_second li a {
+    width: 60px;
+    display: block;
+    color: #A3AAAA;
+    margin-top: 6px;
+    margin-left: 8px;
+}
+
+.footer .footer_second li a::before {
+    content: '\e830';
+    font-family: "iconfont" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 10px;
+}
+
+.footer .footer_second li a:hover {
+    cursor: pointer;
+    color: #f0c783;
+}
+
+.footer .footer_second li p {
+    /* text-indent: 2em; */
+    font-size: 14px;
+    line-height: 22px;
+    /* margin-left: 10px; */
+}
+
+/* 底部第三层 */
+.footer .footer_third {
+    width: 100%;
+    height: 90px;
+    padding: 10px auto;
+    text-align: center;
+    padding-top: 15px;
+    color: #A3AAAA;
+}
+
+.footer .footer_third span {
+    font-size: 12px;
+}
+
+.footer_third .mailbox_link,
+.footer_third .qq_link,
+.footer_third .weixin_link {
+    float: left;
+    width: 138px;
+    height: 75px;
+}
+
+.footer_third .mailbox_link div,
+.footer_third .qq_link div,
+.footer_third .weixin_link div {
+    position: relative;
+    width: 47px;
+    height: 47px;
+    background-color: gray;
+    margin: 0 auto;
+}
+
+.footer_third .mailbox_link div::after,
+.footer_third .qq_link div::after,
+.footer_third .weixin_link div::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 47px;
+    height: 0;
+    font-size: 20px;
+    line-height: 47px;
+    content: '';
+    font-family: "iconfont" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: all 0.5s ease;
+}
+
+.footer_third .mailbox_link div:hover::after{
+    height: 47px;
+    content: '\e63b';
+}
+.footer_third .qq_link div:hover::after{
+    height: 47px;
+    content: '\e882';
+}
+.footer_third .weixin_link div:hover::after {
+    height: 47px;
+    content: '\e739';
+}
+
+
+.footer_third a {
+    float: left;
+    margin-left: 20px;
+    font-size: 12px;
+    color: #A3AAAA;
+    line-height: 50px;
+}
+
+.footer_third #ICP {
+    margin-left: 0;
+}
+
+
+.footer_third i {
+    float: left;
+    margin-left: 20px;
+    font-size: 12px;
+    color: #A3AAAA;
+    line-height: 50px;
+}   
+
+.footer_third a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
