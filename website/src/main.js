@@ -11,6 +11,14 @@ import './assets/font/iconfont.css'
 
 Vue.config.productionTip = false
 
+// 引入三方插件
+import axios from 'axios';
+Vue.prototype.$axios = axios;
+import VueCookies from 'vue-cookies';
+Vue.use(VueCookies);
+// 全局设置 axios 发送请求带上cookie
+axios.defaults.withCredentials = true
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

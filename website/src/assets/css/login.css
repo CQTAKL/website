@@ -2,13 +2,7 @@
     font-family: 'iconfont';
     src: url('../font/iconfont.ttf?t=1657249290807') format('truetype');
 }
-body {
-    min-height: 100vh;
-    /* background: url('../imges/login_bgc.png') no-repeat; */
-    /* background-size: cover; */
-    background: linear-gradient(to bottom right,#b9e7fc,#16b2ff);
-    font-size: 0;
-}
+
 
 /* 版心 */
 .w {
@@ -35,137 +29,124 @@ a:hover {
 form {
     position: relative;
     width: 376px;
-    height: 375px;
     margin: 0 auto;
     top: 0px;
     /* margin-top: 100px; */
     background-color: rgba(175, 188, 249, 0.6);
-    padding: 10px;
-    padding-top: 20px;
-    padding-right: 48px;
+    padding: 20px 30px;
     text-align: right;
     border-radius: 15px;
+    font-size: 16px;
+    text-align: center;
     /* box-shadow: 10px 10px 55px #888888; */
 }
 
-form #registerLabel {
-    display: inline-block;
-    height: 45px;
-    width: 295px;
-    font-size: 32px;
-    line-height: 32px;
-    text-align: center;
+form h2 {
+    margin-bottom: 30px;
     color: #fff;
 }
 
+form li {
+    position: relative;
+    width: 316px;
+    height: 65px;
+    text-align: left;
+    /* background-color: pink; */
+}
+
 form input {
-    width: 292px;
+    width: 100%;
     height: 33px;
-    border: 1px solid gray;
-    margin-bottom: 5px;
-    margin-top: 5px;
-    margin-left: 23px;
-    padding: 6px 23px;
-    padding-right: 30px;
+    border-radius: 15px;
+    padding: 6px 30px;
     color: black;
     font-size: 14px;
 }
 
 form i {
-    /* float: left; */
-    display: block;
-    width: 100%;
-    height: 20px;
-    line-height: 20px;
-    text-align: left;
     margin-left: 26px;
-    color: red;
+    color: rgb(255, 38, 0);
     font-size: 12px;
 }
-form #verification {
+form .verificInput {
+    float: left;
     width: 140px;
     padding-right: 10px;
-    margin-right: 113px;
 }
 
-form img {
-    position: absolute;
+form .verificImg {
+    float: left;
     width: 83px;
     height: 33px;
-    /* background-color: pink; */
-    top: 193px;
-    right: 100px;
+    margin-left: 15px;
 }
 
-form #change {
+form .verificChange {
+    float: right;
+    width: 70px;
+    height: 33px;
     font-size: 14px;
+    line-height: 33px;
+    text-align: center;
+    color: #fff;
+    background-color: #5fa3fc;
+    border-radius: 15px;
 }
 
-form #rember {
+form .wordline {
+    height: 30px;
+}
+
+form .rember {
+    float: left;
     position: relative;
-    width: 292px;
-    height: 14px;
-    /* background-color: pink; */
-    margin-left: 26px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    line-height: 12px;
     font-size: 12px;
+    margin-left: 20px;
+    color: #fff;
 }
 
-form #rember #checkpoint {
+form .rember .iconfont {
     position: absolute;
-    top: -6px;
-    left: 0px;
-    width: 14px;
-    height: 14px;
-    margin-left: 0;
+    top: -2px;
+    left: -18px;
+    font-size: 16px;
 }
 
-/* form #rember #checkpoint {
-    position: absolute;
-    font-family: "iconfont" !important;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-size: 14px;
-    top: 0;
-    left: 0;
-} */
-form #rember #checkpoint:hover {
+form .rember:hover {
     cursor: pointer;
 }
-form #rember a {
-    display: inline-block;
-    margin-left: 192px;
+
+form .lostPassword {
+    float: right;
+    margin-right: 10px;
+    font-size: 12px;
+    color: #fff;
 }
 
-form #change {
-    font-size: 13px;
-}
-
-form #change:hover {
-    text-decoration: underline;
+form .lostPassword:hover {
+    cursor: pointer;
+    color: rgb(0 255 220);
 }
 
 form #commit {
     display: inline-block;
     position: relative;
-    width: 292px;
+    width: 200px;
     height: 31px;
-    border: 1px solid gray;
-    margin-bottom: 20px;
-    color: black;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    color: #fff;
     text-align: center;
-    background-color: #fff;
     font-size: 18px;
     transition: padding-right .4s ease;
+    background-size: 120% auto;
+        background-image: linear-gradient(315deg, #f351ba 15%, #7b3eff 75%);
 }
 
-form #commit li {
+form #commit span {
     position: absolute;
-    right: 100px;
-    top: -5px;
+    right: 50px;
+    top: 3px;
     font-family: "iconfont" !important;
     font-size: 26px;
     font-style: normal;
@@ -182,149 +163,99 @@ form #commit:hover {
     background-color: rgb(252, 253, 250);
 }
 
-form #commit:hover li {
+form #commit:hover span {
     opacity: 0.8;
-    right: 116px;
+    right: 70px;
 }
 
-form .other {
-    position: absolute;
-    bottom: 46px;
-    right: 45px;
-    font-size: 12px;
-}
-
-form .other #question {
-    margin-left: 134px;
-}
-
-form .other #register {
-    color: #f74444;
-}
-
-form #icon_accord {
+form .accord::before,
+form .password::before,
+form .verification::before {
+    content: '\e60a';
     font-family: "iconfont" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     font-size: 16px;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     position: absolute;
-    color: rgb(100, 100, 100);
-    left: 40px;
-    top: 75px;
+    top: 5px;
+    left: 8px;
+    color: #5fa3fc;
 }
 
-form #icon_password {
-    font-family: "iconfont" !important;
-    font-size: 16px;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    position: absolute;
-    color: rgb(100, 100, 100);
-    left: 40px;
-    top: 135px;
-}
-form #icon_verification {
-    font-family: "iconfont" !important;
-    font-size: 16px;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    position: absolute;
-    color: rgb(100, 100, 100);
-    left: 40px;
-    top: 197px;
+form .accord::before {
+    top: 6px;
 }
 
-form .login_other {
-    font-size: 12px;
-    position: absolute;
-    bottom: 10px;
-    left: 38px;
-    width: 200px;
-    height: 30px;
-    text-align: left;
-    line-height: 30px;
-    /* background-color: pink; */
+form .password::before {
+    content: '\e60f';
 }
-form .login_other #qq{
-    display: inline-block;
-    font-family: "iconfont" !important;
-    font-size: 25px;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    margin-left: 20px;
-}
-form .login_other #weixin{
-    display: inline-block;
-    font-family: "iconfont" !important;
-    font-size: 21px;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    margin-left: 20px;
+form .verification::before {
+    content: '\e6a0';
 }
 
-form .eye1 {
+form .eye {
     position: absolute;
-    top: 133px;
-    right: 53px;
+    top: 3px;
+    right: 8px;
     font-family: "iconfont" !important;
     font-size: 20px;
     font-style: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: black;
+    color: #5fa3fc;
 }
-form .eye1:hover {
+form .eye:hover {
     cursor: pointer;
 }
 
-.alert {
-    position: absolute;
-    top: -40%;
-    left: 50%;
-    padding: 5px 10px;
-    border-radius: 10px;
-    margin-left: -200px;
-    width: 400px;
-    height: 80px;
-    text-align: left;
-    background-color: #fff;
-    z-index: 100;
-    opacity: 0;
-}
-.alert_move {
-    animation: alert_move 0.5s ease forwards;
-}
-@keyframes alert_move {
-    0% {
-        opacity: 0;
-        top: -40%;
-    }
-
-    100% {
-        opacity: 1;
-        top: -30%;
-    }
+form .returnRegister {
+    float: left;
+    font-size: 12px;
+    color: #fff;
 }
 
-.alert h2 {
-    font-size: 18px;
+form .returnRegister:hover {
+    cursor: pointer;
 }
-.alert .content {
-    position: relative;
+
+form .tips {
+    display: block;
+    color: #fff;
+    font-size: 12px;
+    /* margin-top: 10px; */
+}
+
+/* 注册界面的增加 */
+form .verificGet {
+    float: right;
+    width: 100px;
+    height: 33px;
     font-size: 14px;
+    line-height: 33px;
+    text-align: center;
+    color: #fff;
+    background-color: #5fa3fc;
+    border-radius: 15px;
 }
-.alert li {
-    position: absolute;
-    top: 2px;
-    right: 10px;
-    font-size: 16px;
+
+form .returnLogin {
+    float: left;
+    font-size: 12px;
+    color: #fff;
 }
-.alert li:hover {
+
+form .returnLogin:hover {
     cursor: pointer;
-    color: black;
+}
+
+form .question {
+    float: right;
+    font-size: 12px;
+    color: #fff;
+}
+
+form .question:hover {
+    cursor: pointer;
+    color: rgb(0 255 220);
 }

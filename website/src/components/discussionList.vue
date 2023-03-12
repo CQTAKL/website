@@ -83,9 +83,10 @@
                                     <span class="name">{{item.author}}</span>
                                     <span class="v">&#xe67b;</span>
                                     <span class="concern">关注+</span>
-                                    <span class="top" v-show="item.isTop">置顶</span>
-                                    <span class="prime" v-show="item.isPrime">精华</span>
                                     <span class="hot" v-show="item.isHot">火热</span>
+                                    <span class="prime" v-show="item.isPrime">精华</span>
+                                    <span class="top" v-show="item.isTop">置顶</span>
+                                    
 
                                     <!-- 鼠标悬浮个人头像显示详细内容 -->
                                     <div class="panel">
@@ -163,7 +164,7 @@
 <script>
 import cover from './childComp/cover.vue';
 import headNav from './childComp/headNav.vue';
-import myFooter from './childComp/footer.vue';
+import myFooter from './childComp/myFooter.vue';
 import announcement from './childComp/announcement.vue';
 import jumpBar from './childComp/jumpBar.vue';
 export default ({

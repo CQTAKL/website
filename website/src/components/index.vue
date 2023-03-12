@@ -1,7 +1,6 @@
 <template>
-    <div>
-        <h2>hello</h2>
-        <div>asdf</div>
+    <div id="index">
+        <h2>主页</h2>
     </div>
 </template>
 <script>
@@ -19,5 +18,8 @@ export default ({
 })
 </script>
 <style>
-    
+    #index {
+        font-size: 16px;
+        text-align: center;
+    }
 </style>

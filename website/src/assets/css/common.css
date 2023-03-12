@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'iconfont';
-    src: url('../font/iconfont.ttf?t=1657249290807') format('truetype');
+    src: url('../font/iconfont.ttf?t=1673593082802') format('truetype');
 }
 body {
     background-color: #f7f8f9;
@@ -376,6 +376,115 @@ a:hover {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+/* 弹窗 */
+.alertWindow {
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-left: -200px;
+    width: 400px;
+    height: 80px;
+    text-align: left;
+    background-color: #fff;
+    z-index: 100;
+    opacity: 0;
+}
+.alert_move {
+    animation: alert_move 0.5s ease forwards;
+}
+@keyframes alert_move {
+    0% {
+        opacity: 0;
+        top: 0%;
+    }
+
+    100% {
+        opacity: 1;
+        top: 50px;
+    }
+}
+
+.alertWindow h2 {
+    font-size: 18px;
+}
+.alertWindow .content {
+    position: relative;
+    font-size: 14px;
+}
+.alertWindow li {
+    position: absolute;
+    top: 2px;
+    right: 10px;
+    font-size: 16px;
+}
+.alertWindow li:hover {
+    cursor: pointer;
+    color: black;
+}
+
+.jumpBar {
+    position: relative;
+    height: 35px;
+    width: 100%;
+    text-align: center;
+    /* background-color: pink; */
+    margin: 30px auto;
+}
+
+.jumpBar ul {
+    height: 35px;
+    display: inline-block;
+}
+
+.jumpBar ul li {
+    float: left;
+}
+    
+.jumpBar a {
+    display: inline-block;
+    color: black;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    /* border: 1px solid gray; */
+    background-color: #fff;
+    line-height: 35px;
+    margin-left: 15px;
+    font-family: "iconfont" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    border-radius: 10px;
+    font-size: 16px;
+    box-shadow: 4px 3px 4px 1px #e9e7e7;
+}
+
+.jumpBar a:hover {
+    cursor: pointer;
+    border: 1px solid gray;
+}
+.jumpBar li:nth-child(n+2) {
+    margin-left: 10px;
+}
+
+.jumpBar #turnLeft_fast {
+    font-size: 21px;
+}
+
+.jumpBar #turnLeft {
+    font-size: 14px;
+}
+
+.jumpBar #turnRight {
+    font-size: 19px;
+}
+
+.jumpBar #turnRight_fast {
+    font-size: 21px;
 }
 
 .footer {

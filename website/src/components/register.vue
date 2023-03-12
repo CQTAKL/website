@@ -1,105 +1,134 @@
 <template>
-    <div>
-        <div class="dark" id="container">
-        <div class="bg"></div>
-        <div class="moon-box">
-            <div class="moon"></div>
-        </div>
-        <div class="sun-box">
-            <div class="sun"></div>
-        </div>
-        <div class="sea"></div>
-    </div>
-    <div class="w">
+    <div id="register">
+        <alertWindow :alert_isShow="alert_isShow" :messageContent="messageContent" @close="close"></alertWindow>
         <div class="logo"></div>
-        <div class="line"></div>
-        <div class="register">欢迎注册</div>
-        <form method="post" action="register.html" class="clearfix">
-            <label class="label">邮箱</label><input type="text" id="accord" placeholder="请输入邮箱"><p></p>
-            <br>
-            <i>邮箱输入格式不正确</i>
-            <br>
-            <label class="label">密码</label><input type="password" id="password" placeholder="请输入密码" onpaste="return false" oncopy="return false" oncut="return false" oncontextmenu="return false"><p></p>
-            <br>
-            <i>密码需要包含字母，数字和特殊字符</i>
-            <br>
-            <label class="label">确认密码</label><input type="password" id="r_password" placeholder="请再次输入密码" onpaste="return false" oncopy="return false" oncut="return false" oncontextmenu="return false">
-            <br>
-            <i>两次输入密码不一致</i>
-            <br>
-            <label class="label">验证码</label><input type="text" id="verification" placeholder="请输入验证码"><div id="get_verification">获取</div><p></p>
-            <br>
-            <div id = agree>
-                <span id = "icon_agree">&#xe600;</span>
-                <span>我已经阅读并同意<a href="#">用户协议</a></span>
-            </div>
-            <a id="commit">注册<li>&#xeb03;</li></a>
-            <br>
-            <div class="other">
-                <label>已有账号，返回</label><a href="" id="login">登录</a> <a href="" id="question">遇到问题？</a>
-            </div>
-            <div class="register_other">
-                更多登录方式<a href="" id="qq">&#xe882;</a><a href="" id="weixin">&#xe739;</a>
-            </div>
-            <!-- 眼睛 -->
-            <div class="eye1">&#xe6a8;</div>
-            <div class="eye2">&#xe6a8;</div>
+        <form action="">
+            <h2>欢迎注册</h2>
+            <li class="accord">
+                <input type="text" placeholder="请输入邮箱" v-model="accordValue" onpaste="return false" oncopy="return false" oncut="return false" oncontextmenu="return false">
+                <i>{{accordError}}</i>
+            </li>
+            <li class="password">
+                <input :type="passwordEyeShow?'text':'password'" placeholder="请输入密码" v-model="password" onpaste="return false" oncopy="return false" oncut="return false" oncontextmenu="return false" autocomplete="off">
+                <i>{{passwordError}}</i>
+                <!-- 眼睛 -->
+                <div class="eye iconfont" :class="{'icon-biyanjing-mianxing3-0': !passwordEyeShow, 'icon-yanjing-': passwordEyeShow}" @click="passwordEyeChange(1)"></div>
+            </li>
+            <li class="password">
+                <input :type="rePasswordEyeShow?'text':'password'" placeholder="请再次输入密码" v-model="rePassword" onpaste="return false" oncopy="return false" oncut="return false" oncontextmenu="return false" autocomplete="off">
+                <i>{{rePasswordError}}</i>
+                <!-- 眼睛 -->
+                <div class="eye iconfont" :class="{'icon-biyanjing-mianxing3-0': !rePasswordEyeShow, 'icon-yanjing-': rePasswordEyeShow}" @click="passwordEyeChange(2)"></div>
+            </li>
+            <li class="verification">
+                <input type="text" class="verificInput" placeholder="请输入验证码" v-model="verification" onpaste="return false" oncopy="return false" oncut="return false" oncontextmenu="return false"><button class="verificGet" type="button">获取</button>
+            <i>{{passwordError}}</i>
+            </li>
+            <li class="wordline">
+                <span class="rember" @click="readChange"><span class="iconfont" :class="{'icon-checkbox-uncheck':!isRead, 'icon-CheckboxChecked-1':isRead}"></span>我已经阅读并同意 <span style="color: rgb(0 255 220)" @click="userAgreement">用户协议</span></span>
+            </li>
+            <button id="commit"  type="button" @click="register">注册<span>&#xeb03;</span></button>
+
+            <li class="wordline">
+                <span class="returnLogin" @click="returnLogin">已有账号，返回 <span style="color: rgb(0 255 220)">登录</span></span><a class="question">遇到问题?</a>
+            </li>
         </form>
-    </div>
-
-    <!-- 显示弹窗 -->
-    <div class="alert">
-        <h2>提示</h2><li>&times;</li>
-        <div class="content">我是弹窗</div>
-    </div>
-
-    <!-- 按钮切换白天和黑夜 -->
-    <div class="btn-box">
-        <div onclick="change('light')">
-            <i class="fa fa-sun-o" aria-hidden="true"></i> 白天
-        </div>
-        <div onclick="change('dark')">
-            <i class="fa fa-moon-o" aria-hidden="true"></i> 黑夜
-        </div>
-    </div>
     </div>
 </template>
 <script>
-
+import alertWindow from "./childComp/alertWindow.vue";
 export default ({
     name: 'register',
+    components: {
+        alertWindow
+    },
     data(){
         return {
+            // 弹窗是否显示
+            alert_isShow: false,
+            // 弹窗内容
+            messageContent: "验证码长度需为4位",
+            // 密码的眼睛显示
+            passwordEyeShow: false,
+            // 确认密码的眼睛显示
+            rePasswordEyeShow: false,
+            // 记住我
+            isRead: true,
+            // 账号输入
+            accordValue: '',
+            // 账号错误信息输出
+            accordError: "",
+            // 密码输入
+            password: '',
+            // 密码错误信息输出
+            passwordError: '',
+            // 再次输入密码
+            rePassword: '',
+            // 再次输入密码错误信息输入
+            rePasswordError: '',
+            // 验证码输入
+            verification: '',
+            // 错误显示延时
+            delayTime: 1000,
+        }
+    },
+    methods: {
+        // 返回登录
+        returnLogin(){
+            this.$router.push('/login');
+        },
+
+        // 用户协议
+        userAgreement(){
+            console.log('用户协议');
+        },
+
+        // 记住我
+        readChange(){
+            this.isRead = !this.isRead;
+        },
+
+        // 密码隐藏可见
+        passwordEyeChange(choice){
+            if(choice === 1){
+                // 从可见变不可见
+                if(this.passwordEyeChange == true){
+                    this.passwordType = "text";
+                }else{
+                    this.passwordType = "password";
+                }
+                this.passwordEyeShow = !this.passwordEyeShow;
+            }
+            else if(choice === 2){
+                // 从可见变不可见
+                if(this.rePasswordEyeChange == true){
+                    this.rePasswordType = "text";
+                }else{
+                    this.rePasswordType = "password";
+                }
+                this.rePasswordEyeShow = !this.rePasswordEyeShow;
+            }
+            
+            
+        },
+
+        // 记住我修改
+        remberMeChange(){
+            this.remberMe = !this.remberMe;
+        },
+
+        // 关闭弹窗
+        close(){
+            this.alert_isShow = false;  
+        },
+
+        // 注册
+        register(){
 
         }
     },
     mounted(){
-        // 确保背景不会随缩放影响
-        let container = document.getElementById('container');
-        // console.log(container.offsetHeight);
-        // console.log(document.documentElement.clientHeight);
-        container.style.height = document.documentElement.clientHeight + 'px';
-
-        window.addEventListener('resize', function() {
-            container.style.height = document.documentElement.clientHeight + 'px';
-        })
-
-
-        //切换白天和黑夜，同时切换logo
-        let logo = document.querySelector('.logo');
-        function change(str) {
-            document.getElementById('container').setAttribute('class', str);
-            let register = document.querySelector('.register');
-            if (str === "light") {
-                register.style.color = 'black';
-                logo.setAttribute('style',"background: url('./imges/logo_black_horizontal.png');background-size: cover;");
-            } else {
-                register.style.color = 'white';
-                logo.setAttribute('style',"background: url('./imges/logo_white_horizontal.png');background-size: cover;");
-            }
-
-        }
-
+        return;
         const judgeFunc = [];
         // 判断字符串是否包含数字
         judgeFunc[0] = function(str){
@@ -328,7 +357,12 @@ export default ({
 })
 </script>
 <style>
-    @import '../assets/css/register.css';
-    @import 'https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css';
-    @import '../assets/css/37.css';
+    @import '../assets/css/login.css';
+    #register {
+        min-height: 100vh;
+        background: url('https://uploadfile.bizhizu.cn/up/45/b1/05/45b105d5a2b7de1c464330493dc86170.jpg.source.jpg') no-repeat;
+        background-size: cover;
+        /* background: linear-gradient(to bottom right,#b9e7fc,#16b2ff); */
+        font-size: 0;
+    }
 </style>

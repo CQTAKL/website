@@ -74,7 +74,7 @@
 <script>
 import cover from './childComp/cover.vue';
 import headNav from './childComp/headNav.vue';
-import myFooter from './childComp/footer.vue';
+import myFooter from './childComp/myFooter.vue';
 export default ({
     name: 'fans',
     data(){

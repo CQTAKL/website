@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "577336",
+      "name": "反馈",
+      "font_class": "fankui",
+      "unicode": "e738",
+      "unicode_decimal": 59192
+    },
+    {
+      "icon_id": "7269313",
+      "name": "我的申请-默认",
+      "font_class": "wodeshenqing-moren",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
       "icon_id": "6337457",
       "name": "插入图片",
       "font_class": "charutupian",
