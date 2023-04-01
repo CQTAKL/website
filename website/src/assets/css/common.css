@@ -391,9 +391,11 @@ a:hover {
     text-align: left;
     background-color: #fff;
     z-index: 100;
+    display: none;
     opacity: 0;
 }
 .alert_move {
+    display: block;
     animation: alert_move 0.5s ease forwards;
 }
 @keyframes alert_move {

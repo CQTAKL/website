@@ -1,7 +1,6 @@
 <template>
     <!-- 跳转栏 -->
-    <div class="w">
-        <div class="jumpBar ">
+        <div class="jumpBar">
             <ul class="clearfix">
                 <li>
                     <a id="turnLeft_fast" title="上五页">&#xe6d7;</a>
@@ -20,7 +19,6 @@
                 </li>
             </ul>
         </div>
-    </div>
 </template>
 <script>
 export default ({
@@ -32,3 +30,16 @@ export default ({
     }
 })
 </script>
+<style scoped>
+    
+    .jumpBar a {
+        color: #fff;
+        background-color: rgb(255, 208, 121);
+    }
+
+    .jumpBar a:hover {
+        background-color: rgb(255, 176, 29);
+        border: 1px solid orange;
+    }
+
+</style>

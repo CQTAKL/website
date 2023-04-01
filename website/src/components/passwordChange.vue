@@ -11,30 +11,75 @@
     </div>
 </template>
 <script>
+import {passwordStrength, isInjection} from "@/assets/js/common.js";
 export default {
     name: "passwordChange",
     data(){
         return{
             title: "密码修改",
+            // 错误显示延时
+            delayTime: 1000,
             itemList: [
                 {
                     key: "原密码",
                     preInput: "请输入原密码",
                     input: "",
-                    error: "密码错误"
+                    error: ""
                 },
                 {
                     key: "新密码",
                     preInput: "请输入原密码",
                     input: "",
-                    error: "1111"
+                    error: ""
                 }
             ]
         }
     },
     methods: {
         submit(){
-            console.log("提交");
+            // 判断输入是否为空
+            if(this.itemList[0].input.trim() == ''){
+                this.itemList[0].error = "输入不能为空";
+                let timer = setTimeout(()=>{this.itemList[0].error  = ""; clearTimeout(timer);}, this.delayTime);
+                return;
+            }
+
+            if(this.itemList[1].input.trim() == ''){
+                this.itemList[1].error = "输入不能为空";
+                let timer = setTimeout(()=>{this.itemList[1].error  = ""; clearTimeout(timer);}, this.delayTime);
+                return;
+            }
+
+            // 判断原密码是否有sql注入
+            if(isInjection(this.itemList[0].input)){
+                this.itemList[0].error = "存在非法字符";
+                let timer = setTimeout(()=>{this.itemList[0].error  = ""; clearTimeout(timer);}, this.delayTime);
+                return;
+            }
+
+            // 判断新密码
+            const [res, message, data] = passwordStrength(this.itemList[1].input);
+            if(res === false){
+                this.itemList[1].error = message;
+                let timer = setTimeout(()=>{this.itemList[1].error  = ""; clearTimeout(timer);}, this.delayTime);
+                return;
+            }
+
+            this.$axios.post('http://localhost:3000/info/modifyPwd', {
+
+                "oldPassword": this.itemList[0].input,
+                "newPassword": this.itemList[1].input,
+
+            }).then(res => { // 请求成功
+                // console.log(res);
+                const {code, msg} = res.data;       
+                // 弹窗提示
+                this.alert_isShow = true;
+                this.messageContent = msg;
+
+            }).catch(err => {
+                console.log(err);
+            });
         }
     },
     mounted(){

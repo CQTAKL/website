@@ -1,9 +1,10 @@
 <template>
     <div class="w">
+        <alertWindow :alert_isShow="alert_isShow" :messageContent="messageContent" @close="close"></alertWindow>
         <ul class="informationModify" @click="resetValue">
             <h2>个人信息修改</h2>
             <li v-for="(item, i) in personInfo" :key=i>
-                <span>{{item.key}}：</span><input type="text" v-model="item.currentValue"><a :index="i">点击重置</a>
+                <span>{{item.key}}：</span><input :type="birthCheck(i)" v-model="item.currentValue"><a :index="i">点击重置</a>
             </li>
             <li class="center"><button class="submit" @click="submit">提交修改</button></li>
         </ul>
@@ -12,20 +13,32 @@
     </div>
 </template>
 <script>
+import alertWindow from "./childComp/alertWindow.vue";
+import {isInjection} from "@/assets/js/common.js";
 export default {
     name: "informationModify",
+    components: {
+        alertWindow
+    },
+    computed: {
+        birthCheck(){
+            return (i) => {
+                return i==1 ? "date" : "text"
+            }
+        }
+    },
     data(){
         return{
+            // 弹窗是否显示
+            alert_isShow: false,
+            // 弹窗内容
+            messageContent: "验证码长度需为4位",
+            
             personInfo: [
                 {
                     key: "用户名",
                     oldValue: "大阳",
                     currentValue: "大阳"
-                },
-                {
-                    key: "简介",
-                    oldValue: "这是一个简介",
-                    currentValue: "这是一个简介"
                 },
                 {
                     key: "生日",
@@ -37,10 +50,20 @@ export default {
                     oldValue: "暂无",
                     currentValue: "暂无"
                 },
+                {
+                    key: "简介",
+                    oldValue: "这是一个简介",
+                    currentValue: "这是一个简介"
+                }
             ]
         }
     },
     methods: {
+        // 关闭弹窗
+        close(){
+            this.alert_isShow = false;  
+        },
+
         // 恢复初始设置
         resetValue(event){
             let index = event.target.getAttribute('index') - 0;
@@ -48,8 +71,61 @@ export default {
         },
 
         // 提交修改
-        sumbit(){
-            alert("提交中");
+        submit(){
+            // 判断是否有空值
+            for(let i=0;i<this.personInfo.length;i++){
+                if(this.personInfo[i].currentValue.trim() == ''){
+                    this.alert_isShow = true;
+                    this.messageContent = "不能存在空值";
+                    return;
+                }
+            }
+
+            // 防sql注入isInjection
+            for(let i=0;i<this.personInfo.length;i++){
+                if(isInjection(this.personInfo[i].currentValue)){
+                    this.alert_isShow = true;
+                    this.messageContent = "存在非法字符";
+                    return;
+                }
+            }
+
+            // 判断字符串长度 昵称20，签名200，简介50
+            if(this.personInfo[0].currentValue.length > 20){
+                this.alert_isShow = true;
+                this.messageContent = "昵称不能超过20个字符";
+                return;
+            }
+
+            if(this.personInfo[2].currentValue.length > 200){
+                this.alert_isShow = true;
+                this.messageContent = "个性签名不能超过200个字符";
+                return;
+            }
+
+            if(this.personInfo[3].currentValue.length > 50){
+                this.alert_isShow = true;
+                this.messageContent = "简介不能超过50个字符";
+                return;
+            }
+
+            // 请求
+            this.$axios.post('http://localhost:3000/info/modifyShow', {
+
+                "nickName": this.personInfo[0].currentValue,
+                "birth": this.personInfo[1].currentValue,
+                "motto": this.personInfo[2].currentValue,
+                "briefIntro": this.personInfo[3].currentValue
+
+            }).then(res => { // 请求成功
+                // console.log(res);
+                const {code, msg} = res.data;
+                // 弹窗提示
+                this.alert_isShow = true;
+                this.messageContent = msg;
+            }).catch(err => {
+                console.log(err);
+            });
         }
     }
 }
@@ -92,7 +168,7 @@ export default {
 
 .informationModify input {
     display: inline-block;
-    widows: 400px;
+    width: 500px;
     height: 40px;
     line-height: 66px;
     padding: 0 20px;

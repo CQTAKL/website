@@ -1,5 +1,6 @@
 <template>
     <div class="box">
+        <alertWindow :alert_isShow="alert_isShow" :messageContent="messageContent" @close="close"></alertWindow>
         <h2>{{title}}</h2>
         <ul>
             <li v-for="(item, i) in itemList" :key=i>
@@ -8,34 +9,65 @@
             </li>
             <li>
                 <span>验证码：</span><input type="text" class="captcha"><button class="sendCode" :class="{button_disable: isSend}" @click="sendCode">{{sendContent}}</button>
-                <i>验证码错误</i>
+                <i>{{verificationError}}</i>
             </li>
         </ul>
         <button @click="submit" class="submit">提交修改</button>
     </div>
 </template>
 <script>
+import alertWindow from "./childComp/alertWindow.vue";
+import {passwordStrength, isMail, isInjection, isNumberOrLetter} from "@/assets/js/common.js";
 export default {
     name: "passwordChange",
+    components: {
+        alertWindow
+    },
     data(){
         return{
+            // 弹窗是否显示
+            alert_isShow: false,
+            // 弹窗内容
+            messageContent: "验证码长度需为4位",
+            // 验证码错误提示
+            verificationError: "",
             title: "绑定修改",
             isSend: false,
             sendContent: "发送验证码",
             itemList: [
                 {
-                    key: "邮箱/手机",
-                    preInput: "请输入邮箱或者手机号",
+                    key: "邮箱地址",
+                    preInput: "请输入邮箱地址",
                     input: "",
-                    error: "密码错误"
+                    error: ""
                 }
             ]
         }
     },
     methods: {
+        // 关闭弹窗
+        close(){
+            this.alert_isShow = false;  
+        },
         sendCode(){
             // 如果还在发送中
             if(this.isSend) return;
+            // 请求
+            this.$axios.post('http://localhost:3000/info/emailCode', {
+
+                "email": this.itemList[0].input,
+
+            }).then(res => { // 请求成功
+                // console.log(res);
+                const {code, msg} = res.data;
+                // 弹窗提示
+                this.alert_isShow = true;
+                this.messageContent = msg;
+                
+            }).catch(err => {
+                console.log(err);
+            });
+
             this.isSend = true;
             this.sendContent = 60;
             const timer = setInterval(() => {

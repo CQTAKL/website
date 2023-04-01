@@ -8,11 +8,14 @@ import fileUpload from '@/components/fileUpload'
 import discussionList from '@/components/discussionList'
 import upDownHistory from '@/components/upDownHistory'
 import login from "@/components/login"
+import login2 from "@/components/login2"
+import authentication from "@/components/authentication"
 import contest from "@/components/contest"
 import informationModify from "@/components/informationModify"
 import passwordChange from '@/components/passwordChange'
 import accountChange from '@/components/accountChange'
 import headshotChange from '@/components/headshotChange'
+import postDetail from '@/components/postDetail'
 import test from '@/components/test'
 Vue.use(Router)
 
@@ -34,9 +37,19 @@ const router = new Router({
       component: login
     },
     {
+      path: '/login2',
+      name: 'login2',
+      component: login2
+    },
+    {
       path: '/register',
       name: 'register',
       component: register
+    },
+    {
+      path: '/authentication',
+      name: 'authentication',
+      component: authentication
     },
     {
       path: '/fileList',
@@ -59,9 +72,14 @@ const router = new Router({
       component: accountChange
     },
     {
-      path: '/headshotChange',
+      path: "/headshotChange",
       name: "headshotChange",
       component: headshotChange
+    },
+    {
+      path: "/postDetail",
+      name: "postDetail",
+      component: postDetail
     },
     {
       path: '/test',

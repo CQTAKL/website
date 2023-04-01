@@ -76,47 +76,47 @@
                     <!-- 帖子列表 -->
                     <div class="passageList">
                         <ul>
-                            <li v-for="(item, i) in passages" :key=i>
+                            <li v-for="(item, i) in passages" :key=i @click="toDetail(item.id)">
                                 <!-- 文章header -->
                                 <div class="passage_hd clearfix">
-                                    <img src="../assets/imges/gg.png" alt="">
-                                    <span class="name">{{item.author}}</span>
+                                    <img :src="item.postUserVO.headerUrl">
+                                    <span class="name">{{item.postUserVO.showRealName ? item.postUserVO.realName : item.postUserVO.nickName}}</span>
                                     <span class="v">&#xe67b;</span>
                                     <span class="concern">关注+</span>
-                                    <span class="hot" v-show="item.isHot">火热</span>
-                                    <span class="prime" v-show="item.isPrime">精华</span>
-                                    <span class="top" v-show="item.isTop">置顶</span>
+                                    <span class="hot" v-show="true">火热</span>
+                                    <span class="prime" v-show="true">精华</span>
+                                    <span class="top" v-show="true">置顶</span>
                                     
 
                                     <!-- 鼠标悬浮个人头像显示详细内容 -->
                                     <div class="panel">
                                         <div class="panel_hd clearfix">
-                                            <img src="../assets/imges/gg.png">
+                                            <img :src="item.postUserVO.headerUrl">
                                             <div class="personInfo">
-                                                <span>{{item.author}}</span>
+                                                <span>{{item.postUserVO.showRealName ? item.postUserVO.realName : item.postUserVO.nickName}}</span>
                                                 <br>
                                                 <span>&#xe67b;</span> <span>&#xe716;</span>
                                                 <br>
-                                                <span>全站排名</span> <span>{{item.rank}}</span>
+                                                <span>全站排名</span> <span>11</span>
                                             </div>
                                         </div>
                                         <div class="panel_bd clearfix">
                                             <ul>
                                                 <li>
                                                     <p>被阅读</p>
-                                                    <p>{{item.beReadNum}}</p>
+                                                    <p>11</p>
                                                 </li>
                                                 <li>
                                                     <p>被点赞</p>
-                                                    <p>{{item.beLikeNUm}}</p>
+                                                    <p>11</p>
                                                 </li>
                                                 <li>
                                                     <p>被收藏</p>
-                                                    <p>{{item.beCollectNum}}</p>
+                                                    <p>11</p>
                                                 </li>
                                                 <li>
                                                     <p>被关注</p>
-                                                    <p>{{item.ConcernNum}}</p>
+                                                    <p>11</p>
                                                 </li>
                                             </ul>
                                         </div>
@@ -133,12 +133,12 @@
                                 </div>
                                 <!-- 文章footer -->
                                 <div class="passage_ft">
-                                    <span class="time">{{item.time}}</span>
-                                    <span class="location">发表于<i>{{item.address}}</i></span>
+                                    <span class="time">{{item.createTime.slice(0,10)}}</span>
+                                    <span class="location">发表于<i>{{item.locationId}}</i></span>
                                     <span class="other">&#xe670;</span>
-                                    <span class="likes_num">{{item.like}}</span>
+                                    <span class="likes_num">{{item.likeCount}}</span>
                                     <span class="likes">&#xec7f;</span>
-                                    <span class="views_num">{{item.view}}</span>
+                                    <span class="views_num">{{item.browseCount}}</span>
                                     <span class="views">&#xe68c;</span>
                                     <ul>
                                         <li>屏蔽</li>
@@ -173,48 +173,45 @@ export default ({
         return {
             passages: [
                 {
-                    author: "零一二三四五六七八九一二三四五",
-                    img: "",
-                    title: "毕业进行时",
-                    content: "今天我们来聊一聊Runnable和Callable这对兄弟。 前言大哥Runnable是Java爸爸第一胎生的，可谓是凤表龙姿，吾门标秀啊，给的位置都是java.lang这个C位，可见今天我们来聊一聊Runnable和Callable这对兄弟,前言unnable和Callable这对兄弟。前言 大哥Runnable是Java爸爸第一胎生的，可谓是凤表龙姿，吾门标秀啊，给的位置都是java.lang这个C位，",
-                    time: "2022-12-06",
-                    address: "浙江",
-                    rank: 18,
-                    view: 933,
-                    like: 117,
-                    isTop: false,
-                    isPrime: false,
-                    isHot: false,
-                    isConcern: false,
-                    beReadNum: 999,
-                    beLikeNUm: 43,
-                    beCollectNum: 23,
-                    beConcernNum: 12,
-                },
-                {
-                    author: "零一二三四五六七八九一二三四五",
-                    img: "",
-                    title: "毕业进行时",
-                    content: "今天我们来聊一聊Runnable和Callable这对兄弟。 前言大哥Runnable是Java爸爸第一胎生的，可谓是凤表龙姿，吾门标秀啊，给的位置都是java.lang这个C位，可见今天我们来聊一聊Runnable和Callable这对兄弟,前言unnable和Callable这对兄弟。前言 大哥Runnable是Java爸爸第一胎生的，可谓是凤表龙姿，吾门标秀啊，给的位置都是java.lang这个C位，",
-                    time: "2022-12-06",
-                    address: "浙江",
-                    rank: 18,
-                    view: 933,
-                    like: 117,
-                    isTop: true,
-                    isPrime: true,
-                    isHot: true,
-                    isConcern: false,
-                    beReadNum: 999,
-                    beLikeNUm: 43,
-                    beCollectNum: 23,
-                    beConcernNum: 12,
+                    "postUserVO": {
+                        "realName": "张创琦",
+                        "nickName": "创琦杂谈111",
+                        "showRealName": true,
+                        "briefIntro": "我是一名大学生",
+                        "vip": 0,
+                        "headerUrl": "http://images.nowcoder.com/head/552t.png"
+                    },
+                    "id": "1087827631920906240",
+                    "title": "这是一个标题",
+                    "content": "这是文章的内容",
+                    "format": 1,
+                    "columnId": null,
+                    "browseCount": 11,
+                    "likeCount": 11,
+                    "commentCount": 11,
+                    "createTime": "2023-03-21T11:58:38.000+00:00",
+                    "locationId": 11
                 }
             ]
         }
     },
     methods: {
+        toDetail(id){
+            this.$router.push({path: '/postDetail?id=' + id});
+        },
 
+        setData(){
+            this.$axios.get("/post/list/1").then(res => {
+                const {code, msg, data} = res.data;
+
+                if(code === "200"){
+                    this.passages = data.postListSingleVOList;
+                }
+
+            }).catch(err => {
+                console.log(err);
+            });
+        }
     },
     mounted(){
         this.passages =  this.passages.reverse()
@@ -228,6 +225,6 @@ export default ({
     }
 })
 </script>
-<style>
+<style scoped>
     @import '../assets/css/discussionList.css';
 </style>

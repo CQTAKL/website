@@ -68,6 +68,11 @@ form i {
     color: rgb(255, 38, 0);
     font-size: 12px;
 }
+
+form .verification i {
+    float: left;
+}
+
 form .verificInput {
     float: left;
     width: 140px;

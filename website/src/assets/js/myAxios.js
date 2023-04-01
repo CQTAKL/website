@@ -17,16 +17,23 @@ const removePending = (config) => {
 // 1.创建axios服务
 const service = axios.create({
   baseURL: '',
-  timeout: 60000 // 请求超时时间
+  timeout: 60000, // 请求超时时间
+  responseType: 'json',
+  transformRequest: [data => qs.stringify(data)], // 允许在向服务器发送前，修改请求数据
+  headers: {
+        "conten-type": "application/x-www-form-urlencoded;charset=utf-8" 
+  }
 })
  
 // 2.创建请求拦截器
 service.interceptors.request.use(
   config => {
-    // 请求头携带token
-    if (this.$cookies.get('token')) {
-      config.headers['X-Token'] = getToken()
+    // 请求携带token
+    let accessToken = localStorage.getItem("accessToken");
+    if(accessToken && accessToken !== "") {
+        config.headers['Authorization'] = accessToken;
     }
+    
     // 处理同一请求被重复执行取消前一次请求
     if (!config.data || !config.data.allowedRepeat) {
       removePending(config) // 在一个ajax发送前执行一下取消操作
@@ -64,59 +71,93 @@ service.interceptors.response.use(
     }
   },
   error => {
-    // 请求失败，响应的status不是200，对各种非200状态码的处理
-    const response = error.response
-    if (response !== undefined) {
-      if (response.status === 401) {
-        store.dispatch('user/resetToken').then(() => {
-          router.push({
-            path: '/limits',
-            query: {
-              redirect: location.hostname
-            }
-          })
-        })
-        return
-      } else if (response.status === 404) {
-        Message({
-          message: '页面未找到',
-          type: 'error',
-          duration: 2000
-        })
-      } else if (response.status === 403) {
-        store.dispatch('user/resetToken').then(() => {
-          router.push({
-            path: '/limits',
-            query: {
-              redirect: location.hostname
-            }
-          })
-        })
-        return
-      } else if (response.status === 400) {
-        Message({
-          message: '错误的请求',
-          type: 'error',
-          duration: 2000
-        })
-      } else if (response.status === 500) {
-        Message({
-          message: '服务器错误',
-          type: 'error',
-          duration: 2000
-        })
-      } else {
-        Message({
-          message: '网络错误，请稍后再试……',
-          type: 'error',
-          duration: 2000
-        })
+    // 如果能正确接收到来自服务器的响应说明不是网络问题而是来自后端的设定反馈
+    if(err && err.response){
+      // 清除token
+      localStorage.removeItem('accessToken');
+      router.replace({
+          path: '/login',
+          //登录成功后跳入浏览的当前页面
+          query: {redirect: router.currentRoute.fullPath}
+      })
+      switch(err.response.status){
+          case 400:
+              err.message = "错误请求";
+              break;
+          case 401:
+              err.message = "未授权，请重新登录";
+              break;
+          case 403:
+              err.message = "拒绝访问";
+              break;
+          case 404:
+              err.message = "请求错误，未找到该资源";
+              break;
+          case 405:
+              err.message = "请求方法未允许";
+              break;
+          case 408:
+              err.message = "请求超时";
+              break;
+          case 500:
+              err.message = "服务器出错";
+              break;
+          default:
+              err.message = `未知错误${err.response.status}`;
       }
-    }else{
-      return {}
-    }
-    return Promise.reject(error)
+  }else{
+      err.message = "连接到服务器失败";
+  }
+  return Promise.reject(err);
   }
 )
  
-export default service
+export function get(url, params = {}) {
+  return new Promise((resolve, reject) => {
+      service({
+          url: url,
+          methods: "get",
+          params: params
+      }).then(response => {
+          resolve(response);
+      }).catch(err => {
+          reject(err);
+      });
+  });
+};
+
+export function post(url, params = {}) {
+  return new Promise((resolve, reject) => {
+      service({
+          url: url,
+          methods: "post",
+          data: params
+      }).then(response => {
+          resolve(response);
+      }).catch(err => {
+          reject(err);
+      });
+  });
+};
+
+export function fileUpload(url, params = {}) {
+  return new Promise((resolve, reject) => {
+      service({
+          url: url,
+          method: "post",
+          data: params,
+          headers: {"content-type": "multipart/form-data"}
+      }).then(response => {
+          resolve(response);
+      }).catch(err => {
+          reject(err);
+      });
+  });
+}
+
+export default {
+  get,
+  post,
+  fileUpload
+}
+

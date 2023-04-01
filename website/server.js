@@ -5,30 +5,21 @@ const fs = require('fs');
 const cors = require('cors');
 const router = express.Router();
 
+// 跨域解决
+app.use(cors());
+
 // 解析json
 const bodyParser = require('body-parser')
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
 
-// 跨域解决
-app.use(cors());
+
 // 导入路由
 app.use(router);
 
-
-
-router.get('/', async (req, res) => {
-    // res.send({
-	// 	status:0,			//状态，0表示成功，1表示失败
-	// 	msg:'GET请求成功', //状态描述
-	// 	data:{
-    //         "name": "Poter",
-    //         "year": 19
-    //     }		  // 需要响应给客户端的具体数据
-	// })
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    const result = fs.readFileSync(path.resolve(__dirname,"./src/assets/imges/code.jpg"), 'base64') 
-    res.send(result) // 返回 base 类型的图片数据
+router.get('/', (req, res) => {
+    const result = "hello";
+    res.send(JSON.stringify(result))
 })
 
 router.post('/user/login', (req, res) => {
@@ -40,7 +31,63 @@ router.post('/user/login', (req, res) => {
     res.send(JSON.stringify(result));
 })
 
-router.post('/user/captcha', (req, res) => {
+router.post('/user/emailCode', (req, res) => {
+    // console.log(req.body);
+    const result = {
+        "code": "200",
+        "msg": "验证码已发送至您的邮箱，请注意查收" 
+    }
+    res.send(JSON.stringify(result));
+})
+
+router.post('/user/register', (req, res) => {
+    // console.log(req.body);
+    const result = {
+        "code": "200",
+        "msg": "注册成功，点击跳转至首页" 
+    }
+    res.send(JSON.stringify(result));
+})
+
+router.post('/user/logout', (req, res) => {
+    // console.log(req.body);
+    const result = {
+        "code": "200",
+        "msg": "此帐号退出成功"
+    }
+    res.send(JSON.stringify(result));
+})
+
+router.post('/user/modifyPwd', (req, res) => {
+    // console.log(req.body);
+    const result = {
+        "code": "200",
+        "msg": "修改成功",
+        "data": null
+    }
+    res.send(JSON.stringify(result));
+})
+
+router.post('/info/auth', (req, res) => {
+    // console.log(req.body);
+    const result = {
+        "code": "200",
+        "msg": "实名认证成功"
+    }
+    res.send(JSON.stringify(result));
+})
+
+router.post('/info/modifyShow', (req, res) => {
+    // console.log(req.body);
+    const result = {
+        "code": "200",
+        "msg": "修改成功",
+        "data": null
+    }
+    res.send(JSON.stringify(result));
+})
+
+router.get('/user/captcha', (req, res) => {
     const result = {
         "code": "200",
         "msg": "操作成功",
