@@ -38,7 +38,7 @@ export default({
         alertWindow
     },
     mounted(){
-        this.$axios.get('http://localhost:3000/user/captcha').then(res => {
+        this.$axios.get(this.$base_url + '/user/captcha').then(res => {
                 // console.log(res.data.data);
                 if(res.data.code === "200"){
                     this.verificationSrc = 'data:image/jpg;base64,' + res.data.data.captcha;
@@ -81,7 +81,7 @@ export default({
         
         // 换一张验证码图片
         changeVerification: debounce(function (){
-            this.$axios.get('http://localhost:3000/user/captcha').then(res => {
+            this.$axios.get(this.$base_url + '/user/captcha').then(res => {
                 // console.log(res.data.data);
                 if(res.data.code === "200"){
                     this.verificationSrc = 'data:image/jpg;base64,' + res.data.data.captcha;
@@ -157,10 +157,10 @@ export default({
             this.accountType();
 
             // 发送请求
-            this.$axios.post('http://localhost:3000/user/login', {
+            this.$axios.post('http://localhost:8080/user/login', {
 
                 "textId": 2,
-                "utext": this.accordValue,
+                "userText": this.accordValue,
                 "password": this.password,
                 "verificationCode": this.verification,
                 "rememberMe": this.isRember
@@ -168,12 +168,17 @@ export default({
             }).then(res => { // 请求成功
 
                 console.log(res.data);
-                const {code, msg} = res.data;
-
-                // 设置一个cookie 1天
-                // this.$cookies.set("token","123456",60 * 60 * 24)
+                const {code, msg, data} = res.data;
                 
                 if(code === "200"){
+                    // 设置一个cookie
+                    // localStorage.setItem(data.cookie.name,data.cookie.value,data.cookie.maxAge);
+                    // this.$cookies.set(data.cookie.name,data.cookie.value,data.cookie.maxAge);
+                    let data2 = new Date().getTime();   //先将此时的时间转化为毫秒
+                    let new_data = new Date(data2 + data.cookie.maxAge);  //将过期时间设置为7天后
+                    // toUTCString() 是将时间根据世界时转换为字符串
+                    document.cookie = data.cookie.name + '='+ data.cookie.value + ';expires=' + new_data.toUTCString()
+
                     // 弹窗提示
                     this.alert_isShow = true;
                     this.messageContent = msg;
@@ -189,7 +194,7 @@ export default({
                 }
                 
 
-            }).catch(function (error) { // 请求失败
+            }).catch((error) =>{ // 请求失败
                 // 弹窗提示
                 this.alert_isShow = true;
                 this.messageContent = "出错了，请再次尝试";

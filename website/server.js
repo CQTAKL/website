@@ -78,7 +78,7 @@ router.post('/info/auth', (req, res) => {
 })
 
 router.post('/info/modifyShow', (req, res) => {
-    // console.log(req.body);
+    console.log(req.body);
     const result = {
         "code": "200",
         "msg": "修改成功",

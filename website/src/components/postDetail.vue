@@ -128,7 +128,7 @@
                         </div>
                         <div class="rootComment-right">
                             <i>{{i+1}}#</i>
-                            <span>{{item.name}}</span>
+                            <span>{{setName(item.commentUserVO.showRealName, item.commentUserVO.realName, item.commentUserVO.nickName)}}</span>
                             <br>
                             <p>{{item.content}}</p>
                         </div>
@@ -140,7 +140,7 @@
                         </div>
                         <ul class="secondaryComment">
                             <li class="clearfix" v-for="(sItem, j) in item.reply" :key=j>
-                                <p><span>{{sItem.name}}</span>&nbsp;回复&nbsp;<span>{{sItem.forName}}</span><i>：&nbsp;&nbsp;&nbsp;&nbsp;</i>{{sItem.content}}</p>
+                                <p><span>{{setName(sItem.commentUserVO.showRealName, sItem.commentUserVO.realName, sItem.commentUserVO.nickName)}}</span>&nbsp;回复&nbsp;<span>{{sItem.forName}}</span><i>：&nbsp;&nbsp;&nbsp;&nbsp;</i>{{sItem.content}}</p>
                                 发表于 <span>{{sItem.createTime.slice(0, 10)}}</span>&nbsp;&nbsp;&nbsp;&nbsp;来自<span>{{setCountryId(sItem.locationId)}}</span>
                                 <div class="commentOption">
                                     <span @click="likeClick(i, j)">赞</span>(<i>{{sItem.likeCount}}</i>)&nbsp;&nbsp;&nbsp;&nbsp;<span @click="showComment(i, j)">{{replyOrCancel(i, j)}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>举报</span>
@@ -282,42 +282,64 @@ export default {
             ],
 
             // 评论
-            comments: [
-                {   
-                    id: 1084541797020991590, // 用于找到这条评论
-                    userId: "123", // 发评论用户的id
-                    name: "篮球与背带裤", // // 发评论的用户名
-                    content: "恢复了你的评论恢复了你的评论恢复了你的评论恢复了你的评论恢复了你的评论恢复了你的评论",
-                    createTime: "2023-03-19T07:11:11.000+00:00",
-                    locationId: "1",
-                    likeCount: 0,
-                    replyNum: 2,
-                    reply: [
-                        {
-                            id: "1084541797020991590",
-                            userId: "123",
-                            name: "刺客351",
-                            content: "恢复了你的评论恢复了你的评论恢复了你的评论恢复了你的评论恢复了你的评论恢复了你的评论",
-                            createTime: "2023-03-19T07:11:11.000+00:00",
-                            locationId: "1",
-                            likeCount: 0,
-                            replyNum: 2,
-                            forName: "篮球与背带裤",
-                        },
-                        {
-                            id: "1084541797020991590",
-                            userId: "123",
-                            name: "刺客351",
-                            content: "恢复了你的评论恢复了你的评论恢复了你的评论恢复了你的评论恢复了你的评论恢复了你的评论",
-                            createTime: "2023-03-19T07:11:11.000+00:00",
-                            locationId: "1",
-                            likeCount: 0,
-                            replyNum: 2,
-                            forName: "篮球与背带裤",
-                        },
-                    ]
+            comments: [],
+            "commentInfos": [
+            {
+                "id": 1084541797020991,
+                "userId": 6,
+                "commentUserVO": {
+                    "realName": "张创琦",
+                    "nickName": "创琦杂谈111",
+                    "showRealName": true,
+                    "briefIntro": "我是一名大学生",
+                    "vip": 0,
+                    "headerUrl": "http://images.nowcoder.com/head/552t.png"
                 },
-            ]
+                "content": null,
+                "locationId": 1,
+                "likeCount": 12,
+                "createTime": "2023-03-19T07:11:11.000+00:00",
+                "parentId": -1,
+                "atId": -1
+            },
+            {
+                "id": 1084541797020992,
+                "userId": 6,
+                "commentUserVO": {
+                    "realName": "张创琦",
+                    "nickName": "创琦杂谈111",
+                    "showRealName": true,
+                    "briefIntro": "我是一名大学生",
+                    "vip": 0,
+                    "headerUrl": "http://images.nowcoder.com/head/552t.png"
+                },
+                "content": null,
+                "locationId": 3,
+                "likeCount": 4,
+                "createTime": "2023-03-19T07:11:45.000+00:00",
+                "parentId": 1084541797020991,
+                "atId": -1
+            },
+            {
+                "id": 1087041120266878,
+                "userId": 6,
+                "commentUserVO": {
+                    "realName": "张创琦",
+                    "nickName": "创琦杂谈111",
+                    "showRealName": true,
+                    "briefIntro": "我是一名大学生",
+                    "vip": 0,
+                    "headerUrl": "http://images.nowcoder.com/head/552t.png"
+                },
+                "content": "此处为评论内容",
+                "locationId": 2,
+                "likeCount": 0,
+                "createTime": "2023-03-19T07:53:19.000+00:00",
+                "parentId": 1084541797020991,
+                "atId": 1084541797020992
+            }
+        ]
+            
         }
     },
     components: {
@@ -379,15 +401,15 @@ export default {
                 if(code === "200"){
                     // 清空原有评论
                     this.comments = [];
+                    
 
                     // 将接收到的数组转集合
-                    const set = new Set();
+                    let set = new Set();
                     data.commentInfos.map(elem => set.add(elem));
 
                     // 将一级评论直接加入数组
                     set.forEach((item) => {
-                        
-                        if(item.parentId === "-1"){
+                        if(item.parentId === -1){
                             // 设置reply和replyNum属性
                             item.replyNum = 0;
                             item.reply = [];
@@ -398,10 +420,13 @@ export default {
                     });
 
                     // 加入@的对象
-                    set.forEach((item) => {  
-                        for(let i=0;i<this.comments.length;i++){
-                            if(item.atId === this.comments[i].userId){
-                                item.forName = this.comments[i].name;
+                    set.forEach((item) => { 
+                        if(item.atId === -1){
+                            item.atId = item.parentId;
+                        } 
+                        for(let i=0;i<data.commentInfos.length;i++){
+                            if(item.atId === data.commentInfos[i].id){
+                                item.forName = this.setName(data.commentInfos[i].commentUserVO.showRealName, data.commentInfos[i].commentUserVO.realName, data.commentInfos[i].commentUserVO.nickName);
                             }
                         }
                     })
@@ -410,15 +435,15 @@ export default {
                     set.forEach((item) => {
                         for(let i=0;i<this.comments.length;i++){
                             // 如果找到了父级评论的位置就加入
-                            if(item.parentId === this.comments[i].userId){
+                            if(item.parentId === this.comments[i].id){
                                 this.comments[i].reply.push(item);
                                 this.comments[i].replyNum++;
                             }
                         }
                     })
 
-
                 }
+
             }).catch(err => {
                 console.log(err);
             }, 1000);
@@ -510,7 +535,7 @@ export default {
         this.index = this.$route.query.id;
 
         // 设置数据
-        // this.setData();
+        this.setData();
     }
 }
 </script>

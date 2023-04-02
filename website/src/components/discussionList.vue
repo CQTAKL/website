@@ -201,7 +201,7 @@ export default ({
         },
 
         setData(){
-            this.$axios.get("/post/list/1").then(res => {
+            this.$axios.get("http://localhost:8080/post/list/1").then(res => {
                 const {code, msg, data} = res.data;
 
                 if(code === "200"){
@@ -214,7 +214,9 @@ export default ({
         }
     },
     mounted(){
-        this.passages =  this.passages.reverse()
+        this.passages = [];
+        this.setData();
+        this.passages =  this.passages.reverse();
     },
     components: {
         cover,

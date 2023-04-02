@@ -29,7 +29,7 @@ export default ({
         logout(){
             console.log("退出");
             // 发送请求
-            this.$axios.post('http://localhost:3000/user/logout').then(res => { // 请求成功
+            this.$axios.post('http://localhost:8080/user/logout').then(res => { // 请求成功
 
                 console.log(res.data);
                 const {code, msg} = res.data;

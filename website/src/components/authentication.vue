@@ -5,11 +5,11 @@
         <form action="" id="form_login">
             <h2>实名认证</h2>
             <li class="accord">
-                <input type="text" placeholder="请输入身份证号" v-model="idNumber" onpaste="return false" oncopy="return false" oncut="return false" oncontextmenu="return false">
+                <input type="text" placeholder="请输入身份证号" v-model="idNumber">
                 <i>{{idNumberError}}</i>
             </li>
             <li class="password">
-                <input type="text" placeholder="请输入姓名" v-model="name" onpaste="return false" oncopy="return false" oncut="return false" oncontextmenu="return false" autocomplete="off">
+                <input type="text" placeholder="请输入姓名" v-model="name">
                 <i>{{nameError}}</i>
             </li>
             <button id="commit"  type="button" @click="sure">确认<span>&#xeb03;</span></button>
@@ -95,7 +95,7 @@ export default {
             }
 
             // 请求
-            this.$axios.post('http://localhost:3000/info/auth', {
+            this.$axios.post('http://localhost:8080/info/auth', {
 
                 "identifyCode": this.idNumber,
                 "realName": this.name, 
