@@ -5,7 +5,7 @@
         <form action="">
             <h2>欢迎注册</h2>
             <li class="accord">
-                <input type="text" placeholder="请输入邮箱" v-model="accord" onpaste="return false" oncopy="return false" oncut="return false" oncontextmenu="return false">
+                <input type="text" placeholder="请输入邮箱,目前仅支持邮箱注册" v-model="accord" onpaste="return false" oncopy="return false" oncut="return false" oncontextmenu="return false">
                 <i>{{accordError}}</i>
             </li>
             <li class="password">
@@ -55,7 +55,7 @@ export default ({
             // 确认密码的眼睛显示
             rePasswordEyeShow: false,
             // 记住我
-            isRead: true,
+            isRead: false,
             // 账号输入
             accord: '',
             // 账号错误信息输出
@@ -189,7 +189,7 @@ export default ({
             }
 
             // 判断账号
-            if(isMail(this.accord)){
+            if(!isMail(this.accord)){
                 this.accordError = "邮箱格式输入错误";
                 let timer = setTimeout(()=>{this.accordError  = ""; clearTimeout(timer);}, this.delayTime);
                 return;

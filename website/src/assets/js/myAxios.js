@@ -2,17 +2,17 @@ import axios from 'axios';
 import router from '@/router/index';
 import cookies from 'vue-cookies';
 import {clearPending, removePending, addPending} from "./pending.js";
-const qs = require('qs');
+// const qs = require('qs');
 
 
 // 1.创建axios服务
 const service = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: '/api',
   timeout: 6000, // 请求超时时间
   responseType: 'json',
-  transformRequest: [data => qs.stringify(data)], // 允许在向服务器发送前，修改请求数据
+  transformRequest: [data => JSON.stringify(data)], // 允许在向服务器发送前，修改请求数据
   headers: {
-        "conten-type": "application/json;charset=utf-8" 
+    'Content-Type': 'application/json;charset=utf-8',
   }
 })
  
@@ -89,7 +89,7 @@ export function post(url, params = {}) {
       service({
           url: url,
           method: "post",
-          data: params
+          data: params,
       }).then(response => {
           resolve(response);
       }).catch(err => {

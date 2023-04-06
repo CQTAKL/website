@@ -34,7 +34,7 @@ export function passwordStrength(text){
     if (text.match(/[A-Z]/g)) { lv++; }; // 验证是否包含大写字母
     if (text.match(/[0-9]/g)) { lv++; }; // 验证是否包含数字
     if(text.match(/[!@#$%^&*_]/g)) {lv++ }; // 验证是否包含特殊字符
-    if (lv < 3) return [false, "密码强度不足"];
+    if (lv < 2) return [false, "密码至少包含大小写字母,数字,特殊字符其中两种"];
     return [true, "密码强度正常"];
 
 }

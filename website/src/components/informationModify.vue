@@ -15,6 +15,7 @@
 <script>
 import alertWindow from "./childComp/alertWindow.vue";
 import {isInjection} from "@/assets/js/common.js";
+import {post, get} from "@/assets/js/myAxios.js";
 export default {
     name: "informationModify",
     components: {
@@ -110,7 +111,7 @@ export default {
             }
 
             // 请求
-            this.$axios.post('http://localhost:3000/info/modifyShow', {
+            post('/info/modifyShow', {
 
                 "nickName": this.personInfo[0].currentValue,
                 "birth": this.personInfo[1].currentValue,
@@ -119,12 +120,10 @@ export default {
 
             }).then(res => { // 请求成功
                 // console.log(res);
-                const {code, msg} = res.data;
+                const {code, msg} = res;
                 // 弹窗提示
                 this.alert_isShow = true;
                 this.messageContent = msg;
-            }).catch(err => {
-                console.log(err);
             });
         }
     }
