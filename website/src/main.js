@@ -15,10 +15,10 @@ Vue.config.productionTip = false
 import axios from 'axios';
 Vue.prototype.$axios = axios;
 import VueCookies from 'vue-cookies';
-Vue.prototype.$base_url = "http://localhost:8080";
+Vue.prototype.$base_url = "http://localhost:3000";
 Vue.use(VueCookies);
 // 全局设置 axios 发送请求带上cookie
-// axios.defaults.withCredentials = true
+axios.defaults.withCredentials = true
 
 /* eslint-disable no-new */
 new Vue({

@@ -23,10 +23,15 @@ router.get('/', (req, res) => {
 })
 
 router.post('/user/login', (req, res) => {
-    // console.log(req.body);
+    console.log(req.body);
     const result = {
         "code": "200",
-        "msg": "登录成功，点击跳转至首页" 
+        "msg": "登录成功，点击跳转至首页",
+        "data": {
+            "userId": 6,
+            "loginTicket": "3456",
+            "expiredTime": "10000"
+        }
     }
     res.send(JSON.stringify(result));
 })

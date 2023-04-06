@@ -37,6 +37,7 @@
 </template>
 <script>
 import alertWindow from "./childComp/alertWindow.vue";
+import {get, post} from "@/assets/js/myAxios.js";
 import {passwordStrength, isMail, isInjection, isNumberOrLetter} from "@/assets/js/common.js";
 export default ({
     name: 'register',
@@ -131,32 +132,30 @@ export default ({
         getVerification(){
             let time = 61;
             if(this.getVerificationText === "获取"){
-                this.$axios.post('http://localhost:3000/user/emailCode', {
+                post('/user/emailCode', {
 
                 "email": this.accord,
 
             }).then(res => { // 请求成功
                 // console.log(res);
-                const {code, msg} = res.data;
+                const {code, msg} = res;
                 // 弹窗提示
                 this.alert_isShow = true;
                 this.messageContent = msg;
 
-            }).catch(err => {
-                console.log(err);
-            });
-                this.alert_isShow = true;
-                this.messageContent = "验证码已经发送至您的邮箱，请查收";
-                let timer = setInterval(()=>{
-                    time--;
-                    this.getVerificationText = "获取 (" + time + ")";
-                    if(time === 0){
-                        clearInterval(timer);
-                        this.getVerificationText = "获取";
-                    }
-                }, 1000);
-                
+                if(code === "200"){
+                    let timer = setInterval(()=>{
+                        time--;
+                        this.getVerificationText = "获取 (" + time + ")";
+                        if(time === 0){
+                            clearInterval(timer);
+                            this.getVerificationText = "获取";
+                        }
+                    }, 1000);
+                }
 
+            });
+                
             }
         },
 
@@ -240,7 +239,7 @@ export default ({
                 return;
             }
 
-            this.$axios.post('http://localhost:3000/user/register', {
+            post('/user/register', {
 
                 "email": this.accord,
                 "password": this.password, // 8-20
@@ -248,24 +247,20 @@ export default ({
 
             }).then(res => { // 请求成功
                 // console.log(res);
-                const {code, msg} = res.data;
+                const {code, msg} = res;
+
+                // 弹窗提示
+                this.alert_isShow = true;
+                this.messageContent = msg;
+
                 if(code === "200"){
-                    // 弹窗提示
-                    this.alert_isShow = true;
-                    this.messageContent = msg;
                     let timer = setTimeout(()=>{
                         clearTimeout(timer);
                         this.$router.push({name:'index'});
                     }, 3000);
                     
-                }else{
-                    // 弹窗提示
-                    this.alert_isShow = true;
-                    this.messageContent = msg;
                 }
-            }).catch(err => {
-                console.log(err);
-            });
+            })
         }
     },
     mounted(){

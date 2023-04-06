@@ -167,6 +167,7 @@ import headNav from './childComp/headNav.vue';
 import myFooter from './childComp/myFooter.vue';
 import announcement from './childComp/announcement.vue';
 import jumpBar from './childComp/jumpBar.vue';
+import {get, post} from "@/assets/js/myAxios";
 export default ({
     name: 'discussionList',
     data(){
@@ -201,15 +202,13 @@ export default ({
         },
 
         setData(){
-            this.$axios.get("http://localhost:8080/post/list/1").then(res => {
-                const {code, msg, data} = res.data;
+            get("/post/list/1").then(res => {
+                const {code, msg, data} = res;
 
                 if(code === "200"){
                     this.passages = data.postListSingleVOList;
                 }
 
-            }).catch(err => {
-                console.log(err);
             });
         }
     },

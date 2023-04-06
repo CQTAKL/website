@@ -28,6 +28,7 @@
 </template>
 <script>
 import alertWindow from "./childComp/alertWindow.vue";
+import {get, post} from "@/assets/js/myAxios.js";
 import {passwordStrength, isMail, isInjection, isNumberOrLetter} from "@/assets/js/common.js";
 export default ({
     name: 'register',
@@ -65,46 +66,43 @@ export default ({
     methods: {
         // 换一张验证码图片
         changeVerification(){
-            this.$axios.get('http://localhost:3000/user/captcha').then(res => {
-                // console.log(res.data.data);
-                if(res.data.code === "200"){
+            get('/user/captcha').then(res => {
+                if(res.code === "200"){
                     this.verificationSrc = 'data:image/jpg;base64,' + res.data.data.captcha;
                 }
-            }).catch(err => {
-                console.log(err);
-            }, 1000);
+            });
         },
 
         // 点击
         getVerification(){
             let time = 61;
             if(this.getVerificationText === "获取"){
-                this.$axios.post('http://localhost:3000/user/emailCode', {
+                post('/user/emailCode', {
 
                 "email": this.accord,
 
             }).then(res => { // 请求成功
                 // console.log(res);
-                const {code, msg} = res.data;
+                const {code, msg} = res;
                 // 弹窗提示
                 this.alert_isShow = true;
                 this.messageContent = msg;
 
-            }).catch(err => {
-                console.log(err);
-            });
-                this.alert_isShow = true;
-                this.messageContent = "验证码已经发送至您的邮箱，请查收";
-                let timer = setInterval(()=>{
-                    time--;
-                    this.getVerificationText = "获取 (" + time + ")";
-                    if(time === 0){
-                        clearInterval(timer);
-                        this.getVerificationText = "获取";
-                    }
-                }, 1000);
-                
+                if(code === "200"){
+                    this.alert_isShow = true;
+                    this.messageContent = "验证码已经发送至您的邮箱，请查收";
+                    let timer = setInterval(()=>{
+                        time--;
+                        this.getVerificationText = "获取 (" + time + ")";
+                        if(time === 0){
+                            clearInterval(timer);
+                            this.getVerificationText = "获取";
+                        }
+                    }, 1000);
+                }
 
+            });
+                
             }
         },
 
@@ -227,14 +225,7 @@ export default ({
 
     },
     mounted(){
-        this.$axios.get('http://localhost:3000/user/captcha').then(res => {
-                // console.log(res.data.data);
-                if(res.data.code === "200"){
-                    this.verificationSrc = 'data:image/jpg;base64,' + res.data.data.captcha;
-                }
-            }).catch(err => {
-                console.log(err);
-            }, 1000);
+        this.changeVerification();
     }
 })
 </script>

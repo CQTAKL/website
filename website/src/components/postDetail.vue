@@ -224,6 +224,7 @@ import myFooter from './childComp/myFooter.vue';
 import announcement from './childComp/announcement.vue';
 import jumpBar from './childComp/jumpBar.vue';
 import {setCountryId, setName} from "@/assets/js/common.js";
+import {get, post} from "@/assets/js/myAxios";
 export default {
     name: 'postDetail',
     computed: {
@@ -356,7 +357,7 @@ export default {
         setCountryId,
         // 点赞
         likeClick(i, j){
-            this.$axios.post("/count/likeCount", {
+            post("/count/likeCount", {
                 "entityType": 1,
                 "entityId": this.comments[i].reply[j].id,
                 "userId":  this.comments[i].reply[j].index
@@ -371,10 +372,10 @@ export default {
 
         // 设置数据
         setData(){
-            this.$axios.get(this.$base_url + '/post/' + this.index).then(res => {
+            get('/post/' + this.index).then(res => {
 
                 console.log(res.data);
-                const {code, msg, data} = res.data;
+                const {code, msg, data} = res;
 
                 if(code === "200"){
                     this.id = data.id;
@@ -385,18 +386,16 @@ export default {
                     this.format = data.format;
                     this.locationId = data.locationId;
                 }
-            }).catch(err => {
-                console.log(err);
-            }, 1000);
+            });
 
-            this.$axios.post(this.$base_url + '/comment/get', {
+            post('/comment/get', {
 
                  "type": "1",
                 "entityId": this.index
 
             }).then(res => {
                 console.log(res.data);
-                const {code, msg, data} = res.data;
+                const {code, msg, data} = res;
 
                 if(code === "200"){
                     // 清空原有评论
@@ -494,7 +493,7 @@ export default {
             const [i, j] = this.to;
             if(i < 0 && j < 0) return;
 
-            this.$axios.post(this.$base_url + "/comment/add", {
+            post("/comment/add", {
                 "content": "此处为评论内容",
                 "parentId": j === -1 ? "-1" : this.comments[i].userId,
                 "atId": j === -1 ? "-1" : this.comments[i].reply[j].userId,
@@ -502,11 +501,9 @@ export default {
                 "createTime": new Date(),
                 "entityId": "1084541806961491968"
             }).then(res => {
-                const {code, msg, data} = res.data;
+                const {code, msg, data} = res;
                     
-            }).catch(err => {
-                console.log(err);
-            })
+            });
 
             this.comments[i].reply.push({
                 id: this.id,

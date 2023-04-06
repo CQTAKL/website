@@ -31,6 +31,7 @@
 </template>
 <script>
 import alertWindow from "./childComp/alertWindow.vue";
+import {get, post} from "@/assets/js/myAxios.js"
 import {isPhoneNumber, isMail, isInjection, isNumberOrLetter, debounce} from "@/assets/js/common.js";
 export default({
     name: "login",
@@ -38,14 +39,7 @@ export default({
         alertWindow
     },
     mounted(){
-        this.$axios.get(this.$base_url + '/user/captcha').then(res => {
-                // console.log(res.data.data);
-                if(res.data.code === "200"){
-                    this.verificationSrc = 'data:image/jpg;base64,' + res.data.data.captcha;
-                }
-            }).catch(err => {
-                console.log(err);
-            }, 1000);
+            this.changeVerification();
     },
     data(){
         return {
@@ -80,16 +74,13 @@ export default({
     methods:{
         
         // 换一张验证码图片
-        changeVerification: debounce(function (){
-            this.$axios.get(this.$base_url + '/user/captcha').then(res => {
-                // console.log(res.data.data);
-                if(res.data.code === "200"){
-                    this.verificationSrc = 'data:image/jpg;base64,' + res.data.data.captcha;
+        changeVerification(){
+            get('/user/captcha').then(res=> {
+                if(res.code === "200"){
+                    this.verificationSrc = 'data:image/jpg;base64,' + res.data.captcha;
                 }
-            }).catch(err => {
-                console.log(err);
-            }, 1000);
-        }),
+            });
+        },
 
         // 账号类型判断 1代表手机号，2代表邮箱，3代表真实姓名
         accountType(){
@@ -157,7 +148,7 @@ export default({
             this.accountType();
 
             // 发送请求
-            this.$axios.post('http://localhost:8080/user/login', {
+            post('/user/login', {
 
                 "textId": 2,
                 "userText": this.accordValue,
@@ -167,38 +158,23 @@ export default({
 
             }).then(res => { // 请求成功
 
-                console.log(res.data);
-                const {code, msg, data} = res.data;
-                
+                console.log(res);
+                const {code, msg, data} = res;
+                // 弹窗提示
+                this.alert_isShow = true;
+                this.messageContent = msg;
+
                 if(code === "200"){
                     // 设置一个cookie
-                    // localStorage.setItem(data.cookie.name,data.cookie.value,data.cookie.maxAge);
-                    // this.$cookies.set(data.cookie.name,data.cookie.value,data.cookie.maxAge);
-                    let data2 = new Date().getTime();   //先将此时的时间转化为毫秒
-                    let new_data = new Date(data2 + data.cookie.maxAge);  //将过期时间设置为7天后
-                    // toUTCString() 是将时间根据世界时转换为字符串
-                    document.cookie = data.cookie.name + '='+ data.cookie.value + ';expires=' + new_data.toUTCString()
+                    this.$cookies.set("Authorization",data.userId + "_" + data.loginTicket,data.expiredTime);
 
-                    // 弹窗提示
-                    this.alert_isShow = true;
-                    this.messageContent = msg;
                     let timer = setTimeout(()=>{
                         clearTimeout(timer);
                         this.$router.push({name:'index'});
                     }, 3000);
                     
-                }else{
-                    // 弹窗提示
-                    this.alert_isShow = true;
-                    this.messageContent = msg;
                 }
                 
-
-            }).catch((error) =>{ // 请求失败
-                // 弹窗提示
-                this.alert_isShow = true;
-                this.messageContent = "出错了，请再次尝试";
-                console.log(error);
             })
         },
 
