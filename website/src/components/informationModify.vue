@@ -3,7 +3,7 @@
         <alertWindow :alert_isShow="alert_isShow" :messageContent="messageContent" @close="close"></alertWindow>
         <ul class="informationModify" @click="resetValue">
             <h2>个人信息修改</h2>
-            <li v-for="(item, i) in personInfo" :key=i>
+            <li v-for="(item, i) in personInfo.slice(1)" :key=i>
                 <span>{{item.key}}：</span><input :type="birthCheck(i)" v-model="item.currentValue"><a :index="i">点击重置</a>
             </li>
             <li class="center"><button class="submit" @click="submit">提交修改</button></li>
@@ -38,8 +38,13 @@ export default {
             personInfo: [
                 {
                     key: "用户名",
-                    oldValue: "大阳",
-                    currentValue: "大阳"
+                    oldValue: "暂无",
+                    currentValue: "暂无"
+                },
+                {
+                    key: "用户名",
+                    oldValue: "暂无",
+                    currentValue: "暂无"
                 },
                 {
                     key: "生日",
@@ -60,6 +65,21 @@ export default {
         }
     },
     methods: {
+        // 初始化数据
+        setData(){
+            get("/info/show/6").then(res => {
+                const {code, msg, data} = res;
+                if(code === "200"){
+                    let num = 1;
+                    for (let value of Object.values(data)) {
+                        this.personInfo[num].oldValue = value;
+                        this.personInfo[num].currentValue = value;
+                        num = num + 1;
+                    }
+                }
+            })
+        },
+
         // 关闭弹窗
         close(){
             this.alert_isShow = false;  
@@ -67,7 +87,7 @@ export default {
 
         // 恢复初始设置
         resetValue(event){
-            let index = event.target.getAttribute('index') - 0;
+            let index = event.target.getAttribute('index') - 0 + 1;
             this.personInfo[index].currentValue = this.personInfo[index].oldValue;
         },
 

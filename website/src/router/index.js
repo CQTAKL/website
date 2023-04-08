@@ -18,6 +18,7 @@ import headshotChange from '@/components/headshotChange'
 import postDetail from '@/components/postDetail'
 import forgetPassword from '@/components/forgetPassword'
 import test from '@/components/test'
+import cookies from 'vue-cookies';
 Vue.use(Router)
 
 const router = new Router({
@@ -89,18 +90,31 @@ const router = new Router({
     },{
       path: "/forgetPassword",
       name: "forgetPassword",
-      component: forgetPassword
+      component: forgetPassword,
+      meta: {
+        requireAuth: true 
+     }
     }
   ]
 });
 
 //挂载路由导航守卫,控制页面访问权限
-// router.beforeEach((to, from, next) => {
-//   if (to.path === '/login') return next();
-//   //获取token
-//   const tokenStr = window.sessionStorage.getItem('token')
-//   if (!tokenStr) return next('/login')
-//   next()
-// })
+router.beforeEach((to, from, next) => {
+    if (to.meta.requireAuth) { // 判断跳转的路由是否需要登录
+      let accessToken = cookies.get("Authorization");
+      if (accessToken && accessToken !== -1) { // vuex.state判断token是否存在
+          next() // 已登录
+      } else {
+          next({
+              path: '/login',
+              query: {redirect: to.fullPath} // 将跳转的路由path作为参数，登录成功后跳转到该路由
+          })
+      }
+  } else {
+     next()
+  }
+
+  
+})
 
 export default router;
