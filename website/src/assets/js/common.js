@@ -23,6 +23,12 @@ export function isNumberOrLetter(text) {
     return reg.test(text);
 }
 
+// 判断是否为数字
+export function isNumber(text){
+    const reg = /^[0-9]*$/;
+    return reg.test(text);
+}
+
 // 判断密码强度
 export function passwordStrength(text){
     if (text.match(/[^0-9a-zA-Z!@#$%^&*_]+/g)) return [false, "包含非法字符"];

@@ -3,9 +3,9 @@
         <alertWindow :alert_isShow="alert_isShow" :messageContent="messageContent" @close="close"></alertWindow>
         <div class="logo"></div>
         <form action="">
-            <h2>欢迎注册</h2>
+            <h2>修改密码</h2>
             <li class="accord">
-                <input type="text" placeholder="请输入邮箱,目前仅支持邮箱注册" v-model="accord" onpaste="return false" oncopy="return false" oncut="return false" oncontextmenu="return false">
+                <input type="text" placeholder="请输入邮箱" v-model="accord" onpaste="return false" oncopy="return false" oncut="return false" oncontextmenu="return false">
                 <i>{{accordError}}</i>
             </li>
             <li class="password">
@@ -24,13 +24,13 @@
                 <input type="text" class="verificInput" placeholder="请输入验证码" v-model="verification" onpaste="return false" oncopy="return false" oncut="return false" oncontextmenu="return false"><button class="verificGet" type="button" @click="getVerification">{{getVerificationText}}</button>
             <i>{{verificationError}}</i>
             </li>
-            <li class="wordline">
+            <!-- <li class="wordline">
                 <span class="rember" @click="readChange"><span class="iconfont" :class="{'icon-checkbox-uncheck':!isRead, 'icon-CheckboxChecked-1':isRead}"></span>我已经阅读并同意 <span style="color: rgb(0 255 220)" @click="userAgreement">用户协议</span></span>
-            </li>
-            <button id="commit"  type="button" @click="register">注册<span>&#xeb03;</span></button>
+            </li> -->
+            <button id="commit"  type="button" @click="resetPassword">修改<span>&#xeb03;</span></button>
 
             <li class="wordline">
-                <span class="returnLogin" @click="returnLogin">已有账号，返回 <span style="color: rgb(0 255 220)">登录</span></span><a class="question">遇到问题?</a>
+                <span class="returnLogin" @click="returnLogin">已有账号，返回 <span style="color: rgb(0 255 220)">登录</span></span><a class="question">常见问题?</a>
             </li>
         </form>
     </div>
@@ -54,8 +54,6 @@ export default ({
             passwordEyeShow: false,
             // 确认密码的眼睛显示
             rePasswordEyeShow: false,
-            // 记住我
-            isRead: false,
             // 账号输入
             accord: '',
             // 账号错误信息输出
@@ -82,16 +80,6 @@ export default ({
         // 返回登录
         returnLogin(){
             this.$router.push('/login');
-        },
-
-        // 用户协议
-        userAgreement(){
-            console.log('用户协议');
-        },
-
-        // 用户协议
-        readChange(){
-            this.isRead = !this.isRead;
         },
 
         // 密码隐藏可见
@@ -160,7 +148,7 @@ export default ({
         },
 
         // 注册
-        register(){
+        resetPassword(){
             // 账号输入为空
             if(this.accord.trim() == ''){
                 this.accordError = "输入不能为空";
@@ -231,18 +219,10 @@ export default ({
                 return;
             }
 
-            // 判断是否点击了用户协议
-            if(!this.isRead){
-                // 弹窗提示
-                this.alert_isShow = true;
-                this.messageContent = "请查看用户协议并确认";
-                return;
-            }
-
-            post('/user/register', {
+            post('/user/forgetPwd', {
 
                 "email": this.accord,
-                "password": this.password, // 8-20
+                "newPwd": this.password,
                 "code": this.verification // 纯数字
 
             }).then(res => { // 请求成功
@@ -256,9 +236,8 @@ export default ({
                 if(code === "200"){
                     let timer = setTimeout(()=>{
                         clearTimeout(timer);
-                        this.$router.push({name:'index'});
+                        this.$router.push({name:'login'});
                     }, 3000);
-                    
                 }
             })
         }

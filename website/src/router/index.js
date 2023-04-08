@@ -16,6 +16,7 @@ import passwordChange from '@/components/passwordChange'
 import accountChange from '@/components/accountChange'
 import headshotChange from '@/components/headshotChange'
 import postDetail from '@/components/postDetail'
+import forgetPassword from '@/components/forgetPassword'
 import test from '@/components/test'
 Vue.use(Router)
 
@@ -85,6 +86,10 @@ const router = new Router({
       path: '/test',
       name: "test",
       component: test
+    },{
+      path: "/forgetPassword",
+      name: "forgetPassword",
+      component: forgetPassword
     }
   ]
 });

@@ -5,7 +5,7 @@
         <form action="" id="form_login">
             <h2>欢迎登录</h2>
             <li class="accord">
-                <input type="text" placeholder="请输入账号" v-model="accordValue" onpaste="return false" oncopy="return false" oncut="return false" oncontextmenu="return false">
+                <input type="text" placeholder="请输入邮箱" v-model="accordValue" onpaste="return false" oncopy="return false" oncut="return false" oncontextmenu="return false">
                 <i>{{accordError}}</i>
             </li>
             <li class="password">
@@ -19,7 +19,7 @@
             <i>{{verificationError}}</i>
             </li>
             <li class="wordline">
-                <span class="rember" @click="remberChange"><span class="iconfont" :class="{'icon-checkbox-uncheck':!isRember, 'icon-CheckboxChecked-1':isRember}"></span>记住我</span><a href="" class="lostPassword">忘记密码</a>
+                <span class="rember" @click="remberChange"><span class="iconfont" :class="{'icon-checkbox-uncheck':!isRember, 'icon-CheckboxChecked-1':isRember}"></span>记住我</span><a class="lostPassword" @click="forgetPassword">忘记密码</a>
             </li>
             <button id="commit"  type="button" @click="login">登录<span>&#xeb03;</span></button>
             <li class="wordline">
@@ -181,6 +181,11 @@ export default({
         // 去注册 
         returnRegister(){
             this.$router.push('/register');
+        },
+
+        // 忘记密码
+        forgetPassword(){
+            this.$router.push('/forgetPassword');
         },
 
         // 记住我
