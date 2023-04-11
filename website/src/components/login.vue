@@ -30,9 +30,10 @@
     </div>
 </template>
 <script>
+import md5 from "js-md5";
 import alertWindow from "./childComp/alertWindow.vue";
-import {get, post} from "@/assets/js/myAxios.js"
-import {isPhoneNumber, isMail, isInjection, isNumberOrLetter, debounce} from "@/assets/js/common.js";
+import {get, post} from "@/assets/js/myAxios.js";
+import {isPhoneNumber, isMail, isInjection, isNumberOrLetter, randomString} from "@/assets/js/common.js";
 export default({
     name: "login",
     components: {
@@ -72,6 +73,12 @@ export default({
         }
     },
     methods:{
+        // 密码加密
+        md5Encrypt(){
+            let salt= randomString(5);
+            this.password = md5(this.password + salt);
+            console.log(salt, this.password);
+        },
         
         // 换一张验证码图片
         changeVerification(){
@@ -146,6 +153,9 @@ export default({
 
             // 判断账号输入类型 
             this.accountType();
+
+            // 密码加密
+            this.md5Encrypt();
 
             // 发送请求
             post('/user/login', {

@@ -7,6 +7,7 @@
 </template>
 <script>
 import alertWindow from "./childComp/alertWindow.vue";
+import {get, post} from "@/assets/js/myAxios.js";
 export default ({
     name: 'index',
     components: {
@@ -29,20 +30,13 @@ export default ({
         logout(){
             console.log("退出");
             // 发送请求
-            this.$axios.post('http://localhost:8080/user/logout').then(res => { // 请求成功
-
-                console.log(res.data);
-                const {code, msg} = res.data;
+            post('/user/logout').then(res => { // 请求成功
+                const {code, msg} = res;
                 
                 // 弹窗提示
                 this.alert_isShow = true;
                 this.messageContent = msg;
 
-            }).catch(function (error) { // 请求失败
-                // 弹窗提示
-                this.alert_isShow = true;
-                this.messageContent = "出错了，请再次尝试";
-                console.log(error);
             })
         }
     },

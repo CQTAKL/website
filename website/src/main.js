@@ -18,7 +18,24 @@ import VueCookies from 'vue-cookies';
 Vue.prototype.$base_url = "http://localhost:3000";
 Vue.use(VueCookies);
 // 全局设置 axios 发送请求带上cookie
-axios.defaults.withCredentials = true
+// axios.defaults.withCredentials = true
+
+// 引入md库
+import VueMarkdownEditor from '@kangc/v-md-editor';
+import '@kangc/v-md-editor/lib/style/base-editor.css';
+import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js';
+import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
+import Prism from 'prismjs';
+
+VueMarkdownEditor.use(vuepressTheme, {
+  Prism,
+});
+
+import createEmojiPlugin from '@kangc/v-md-editor/lib/plugins/emoji/index';
+import '@kangc/v-md-editor/lib/plugins/emoji/emoji.css';
+VueMarkdownEditor.use(createEmojiPlugin());
+
+Vue.use(VueMarkdownEditor);
 
 /* eslint-disable no-new */
 new Vue({

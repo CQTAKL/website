@@ -120,7 +120,7 @@ export default ({
         getVerification(){
             let time = 61;
             if(this.getVerificationText === "获取"){
-                post('/user/emailCode', {
+                post('/info/emailCode', {
 
                 "email": this.accord,
 

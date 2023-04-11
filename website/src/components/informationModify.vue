@@ -1,10 +1,19 @@
 <template>
     <div class="w">
         <alertWindow :alert_isShow="alert_isShow" :messageContent="messageContent" @close="close"></alertWindow>
-        <ul class="informationModify" @click="resetValue">
+        <ul class="informationModify">
             <h2>个人信息修改</h2>
-            <li v-for="(item, i) in personInfo.slice(1)" :key=i>
-                <span>{{item.key}}：</span><input :type="birthCheck(i)" v-model="item.currentValue"><a :index="i">点击重置</a>
+            <li>
+                <span>{{personInfo.nickName.key}}：</span><input v-model="personInfo.nickName.currentValue"><a @click='resetValue("nickName")'>点击恢复</a>
+            </li>
+            <li>
+                <span>{{personInfo.birth.key}}：</span><input type="date" v-model="personInfo.birth.currentValue"><a @click='resetValue("birth")'>点击恢复</a>
+            </li>
+            <li>
+                <span>{{personInfo.motto.key}}：</span><textarea v-model="personInfo.motto.currentValue"></textarea><a @click='resetValue("motto")'>点击恢复</a>
+            </li>
+            <li>
+                <span>{{personInfo.briefIntro.key}}：</span><textarea v-model="personInfo.briefIntro.currentValue"></textarea><a @click='resetValue("briefIntro")'>点击恢复</a>
             </li>
             <li class="center"><button class="submit" @click="submit">提交修改</button></li>
         </ul>
@@ -21,13 +30,6 @@ export default {
     components: {
         alertWindow
     },
-    computed: {
-        birthCheck(){
-            return (i) => {
-                return i==1 ? "date" : "text"
-            }
-        }
-    },
     data(){
         return{
             // 弹窗是否显示
@@ -35,34 +37,32 @@ export default {
             // 弹窗内容
             messageContent: "验证码长度需为4位",
             
-            personInfo: [
-                {
+            personInfo: {
+                "nickName": {
                     key: "用户名",
                     oldValue: "暂无",
                     currentValue: "暂无"
                 },
-                {
-                    key: "用户名",
-                    oldValue: "暂无",
-                    currentValue: "暂无"
-                },
-                {
+                "birth":{
                     key: "生日",
                     oldValue: "2012-12-22",
                     currentValue: "2012-12-22"
                 },
-                {
+                "motto":{
                     key: "个性签名",
                     oldValue: "暂无",
                     currentValue: "暂无"
                 },
-                {
+                "briefIntro":{
                     key: "简介",
                     oldValue: "这是一个简介",
                     currentValue: "这是一个简介"
                 }
-            ]
+            }
         }
+    },
+    mounted(){
+        this.setData();
     },
     methods: {
         // 初始化数据
@@ -70,12 +70,10 @@ export default {
             get("/info/show/6").then(res => {
                 const {code, msg, data} = res;
                 if(code === "200"){
-                    let num = 1;
-                    for (let value of Object.values(data)) {
-                        this.personInfo[num].oldValue = value;
-                        this.personInfo[num].currentValue = value;
-                        num = num + 1;
-                    }
+                    Object.keys(data).forEach(key => {
+                        this.personInfo[key].oldValue = data.key;
+                        this.personInfo[key].currentValue = data.key;
+                    })
                 }
             })
         },
@@ -86,8 +84,7 @@ export default {
         },
 
         // 恢复初始设置
-        resetValue(event){
-            let index = event.target.getAttribute('index') - 0 + 1;
+        resetValue(index){
             this.personInfo[index].currentValue = this.personInfo[index].oldValue;
         },
 
@@ -124,9 +121,9 @@ export default {
                 return;
             }
 
-            if(this.personInfo[3].currentValue.length > 50){
+            if(this.personInfo[3].currentValue.length > 200){
                 this.alert_isShow = true;
-                this.messageContent = "简介不能超过50个字符";
+                this.messageContent = "简介不能超过200个字符";
                 return;
             }
 
@@ -155,7 +152,7 @@ export default {
     /* height: 1000px; */
     background-color: #fff;
     border-radius: 25px;
-    margin-top: 80px;
+    margin-top: 40px;
     margin-bottom: 60px;
     font-size: 16px;
     color: black;
@@ -175,6 +172,7 @@ export default {
     width: 100%;
 }
 
+
 .informationModify span {
     display: inline-block;
     width: 135px;
@@ -183,16 +181,32 @@ export default {
     font-size: 18px;
     margin-right: 40px;
     text-align: right;
+    vertical-align: top;
 }
 
 .informationModify input {
     display: inline-block;
     width: 500px;
     height: 40px;
-    line-height: 66px;
+    margin-top: 10px;
     padding: 0 20px;
     font-size: 18px;
     border-radius: 15px;
+}
+
+.informationModify textarea{
+    display: inline-block;
+    width: 500px;
+    height: 120px;
+    font-size: 18px;
+    border-radius: 15px;
+    outline: none;
+    border: 0px;
+    padding: 20px;
+    resize: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .informationModify li:nth-child(n+1) {

@@ -19,6 +19,7 @@
 </template>
 <script>
 import alertWindow from "./childComp/alertWindow.vue";
+import {get, post} from "@/assets/js/myAxios.js";
 import {isInjection, isNumberOrLetter} from "@/assets/js/common.js";
 export default {
     name: "authentication",
@@ -95,14 +96,14 @@ export default {
             }
 
             // 请求
-            this.$axios.post('http://localhost:8080/info/auth', {
+            post('/info/auth', {
 
                 "identifyCode": this.idNumber,
                 "realName": this.name, 
 
             }).then(res => { // 请求成功
                 // console.log(res);
-                const {code, msg} = res.data;
+                const {code, msg} = res;
                 if(code === "200"){
                     // 弹窗提示
                     this.alert_isShow = true;

@@ -19,9 +19,13 @@ import postDetail from '@/components/postDetail'
 import forgetPassword from '@/components/forgetPassword'
 import test from '@/components/test'
 import cookies from 'vue-cookies';
+import richTextEditor from '@/components/richTextEditor'
+import mdEditor from '@/components/mdEditor'
+import editor from "@/components/editor"
 Vue.use(Router)
 
 const router = new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -87,13 +91,29 @@ const router = new Router({
       path: '/test',
       name: "test",
       component: test
-    },{
+    },
+    {
       path: "/forgetPassword",
       name: "forgetPassword",
       component: forgetPassword,
       meta: {
         requireAuth: true 
      }
+    },
+    {
+      path: "/richTextEditor",
+      name: "richTextEditor",
+      component: richTextEditor
+    },
+    {
+      path: "/mdEditor",
+      name: "mdEditor",
+      component: mdEditor
+    },
+    {
+      path: "/editor",
+      name: "editor",
+      component: editor
     }
   ]
 });

@@ -12,13 +12,7 @@
                 <div class="leftContent">
                     <p>热门标签</p>
                     <ul>
-                        <li>浙江高考</li>
-                        <li>浙江高考</li>
-                        <li>浙江高考</li>
-                        <li>浙江高考</li>
-                        <li>浙江高考</li>
-                        <li>浙江高考</li>
-                        <li>浙江高考</li>
+                        <li v-for="(item, i) in recommendPost" :key=i @click='setData(i+1+"")' :class="{liHover: postIndex==i+1}">{{item}}</li>
                     </ul>
                     <img src="../assets/imges/1.gif">
                     <li id="line"></li>
@@ -172,6 +166,8 @@ export default ({
     name: 'discussionList',
     data(){
         return {
+            postIndex: "1",
+            recommendPost: ["综合","考研","就业","竞赛/证书","公共课讨论","专业课讨论","旅游","AI人工智能","体育组队","出国","个人随记"],
             passages: [
                 {
                     "postUserVO": {
@@ -201,8 +197,9 @@ export default ({
             this.$router.push({path: '/postDetail?id=' + id});
         },
 
-        setData(){
-            get("/post/list/1").then(res => {
+        setData(index){
+            this.postIndex = index;
+            get("/post/list/" + index).then(res => {
                 const {code, msg, data} = res;
 
                 if(code === "200"){
@@ -214,7 +211,7 @@ export default ({
     },
     mounted(){
         this.passages = [];
-        this.setData();
+        this.setData("1");
         this.passages =  this.passages.reverse();
     },
     components: {

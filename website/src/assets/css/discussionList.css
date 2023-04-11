@@ -7,7 +7,7 @@
     float: left;
     width: 188px;
     /* height: 282px; */
-    height: 365px;
+    /* height: 365px; */
     text-align: center;
     background-color: #fff;
     padding: 11px;
@@ -36,6 +36,11 @@
 .leftContent ul li:hover {
     background-color: #71aeff;
     color: white;
+}
+
+.liHover {
+    background-color: #71aeff !important;
+    color: white !important;
 }
 
 .leftContent img {
@@ -174,6 +179,7 @@
 .middleContent .passageList {
     width: 100%;
     /* height: 400px; */
+    min-height: 300px;
     margin-top: 10px;
 }
 

@@ -38,7 +38,7 @@
 <script>
 import alertWindow from "./childComp/alertWindow.vue";
 import {get, post} from "@/assets/js/myAxios.js";
-import {passwordStrength, isMail, isInjection, isNumber} from "@/assets/js/common.js";
+import {passwordStrength, isMail, isInjection, isNumber, randomString} from "@/assets/js/common.js";
 export default ({
     name: 'register',
     components: {
@@ -79,6 +79,13 @@ export default ({
         }
     },
     methods: {
+        // 密码加密
+        md5Encrypt(){
+            let salt= randomString(5);
+            this.password = md5(this.password + salt);
+            console.log(salt, this.password);
+        },
+
         // 返回登录
         returnLogin(){
             this.$router.push('/login');
@@ -238,6 +245,9 @@ export default ({
                 this.messageContent = "请查看用户协议并确认";
                 return;
             }
+
+            // 加密
+            this.md5Encrypt();
 
             post('/user/register', {
 
