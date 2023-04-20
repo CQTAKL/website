@@ -85,6 +85,7 @@ export default({
             get('/user/captcha').then(res=> {
                 if(res.code === "200"){
                     this.verificationSrc = 'data:image/jpg;base64,' + res.data.captcha;
+                    this.$cookies.set("captchaOwner",res.data.captchaOwner);
                 }
             });
         },
@@ -171,12 +172,14 @@ export default({
                 console.log(res);
                 const {code, msg, data} = res;
                 // 弹窗提示
-                this.alert_isShow = true;
-                this.messageContent = msg;
+                // this.alert_isShow = true;
+                // this.messageContent = msg;
+                alert(msg);
 
                 if(code === "200"){
                     // 设置一个cookie
-                    this.$cookies.set("Authorization",data.userId + "_" + data.loginTicket,data.expiredTime);
+                    // this.$cookies.set("Authorization",data.userId + "_" + data.loginTicket,data.expiredTime);
+                    this.$cookies.set("Authorization",data.jwtToken,data.expiredTime);
 
                     let timer = setTimeout(()=>{
                         clearTimeout(timer);

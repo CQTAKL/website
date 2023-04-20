@@ -103,6 +103,17 @@ router.get('/user/captcha', (req, res) => {
     res.send(JSON.stringify(result));
 })
 
+router.post('/post/add/picture', (req, res) => {
+    const result = {
+        "code": "200",
+        "msg": "操作成功",
+        "data": {
+            "path": "https://pic3.zhimg.com/v2-58d652598269710fa67ec8d1c88d8f03_r.jpg?source=1940ef5c"
+        }
+    }
+    res.send(JSON.stringify(result));
+})
+
 app.listen(3000, function(){
     console.log('3000端口监听中...');
 });

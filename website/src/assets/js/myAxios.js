@@ -21,10 +21,16 @@ service.interceptors.request.use(
   config => {
     // 请求携带token
     let accessToken = cookies.get("Authorization");
+    let captchaOwner = cookies.get("captchaOwner");
     if(accessToken) {
         config.headers['Authorization'] = accessToken;
     }else{
       config.headers['Authorization'] = -1;
+    }
+    if(captchaOwner){
+      config.headers['captchaOwner'] = accessToken;
+    }else{
+      config.headers['captchaOwner'] = -1;
     }
     removePending(config) // 在请求开始前，对之前的请求做检查取消操作
     addPending(config) // 将当前请求添加到 pending 中

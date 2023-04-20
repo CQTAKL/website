@@ -74,8 +74,9 @@ export default {
                 // console.log(res);
                 const {code, msg} = res.data;       
                 // 弹窗提示
-                this.alert_isShow = true;
-                this.messageContent = msg;
+                // this.alert_isShow = true;
+                // this.messageContent = msg;
+                alert(msg);
 
             }).catch(err => {
                 console.log(err);

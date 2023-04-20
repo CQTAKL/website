@@ -128,8 +128,9 @@ export default ({
                 // console.log(res);
                 const {code, msg} = res;
                 // 弹窗提示
-                this.alert_isShow = true;
-                this.messageContent = msg;
+                // this.alert_isShow = true;
+                // this.messageContent = msg;
+                alert(msg);
 
                 if(code === "200"){
                     let timer = setInterval(()=>{
@@ -230,8 +231,9 @@ export default ({
                 const {code, msg} = res;
 
                 // 弹窗提示
-                this.alert_isShow = true;
-                this.messageContent = msg;
+                // this.alert_isShow = true;
+                // this.messageContent = msg;
+                alert(msg);
 
                 if(code === "200"){
                     let timer = setTimeout(()=>{

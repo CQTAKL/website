@@ -10,7 +10,7 @@
   </template>
 <script>
 import VueMarkdownEditor, { xss } from '@kangc/v-md-editor';
-import {get, post} from "@/assets/js/myAxios.js";
+import {fileUpload} from "@/assets/js/myAxios.js";
 export default ({
     data() {
       return {
@@ -30,7 +30,7 @@ export default ({
         onUploadImage(event, insertImage, files) {
             const file = files[0];
             console.log(file);
-            post('/post/add/picture').then(res => {
+            fileUpload('/post/add/picture').then(res => {
                 const {code, msg, data} = res;
                 if(code === "200") {
                   insertImage({

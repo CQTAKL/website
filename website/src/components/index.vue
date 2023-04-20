@@ -34,8 +34,9 @@ export default ({
                 const {code, msg} = res;
                 
                 // 弹窗提示
-                this.alert_isShow = true;
-                this.messageContent = msg;
+                // this.alert_isShow = true;
+                // this.messageContent = msg;
+                alert(msg);
 
             })
         }

@@ -147,8 +147,9 @@ export default ({
                 // console.log(res);
                 const {code, msg} = res;
                 // 弹窗提示
-                this.alert_isShow = true;
-                this.messageContent = msg;
+                // this.alert_isShow = true;
+                // this.messageContent = msg;
+                alert(msg);
 
                 if(code === "200"){
                     let timer = setInterval(()=>{
@@ -241,8 +242,9 @@ export default ({
             // 判断是否点击了用户协议
             if(!this.isRead){
                 // 弹窗提示
-                this.alert_isShow = true;
-                this.messageContent = "请查看用户协议并确认";
+                // this.alert_isShow = true;
+                // this.messageContent = "请查看用户协议并确认";
+                alert('请查看用户协议并确认');
                 return;
             }
 
@@ -260,8 +262,9 @@ export default ({
                 const {code, msg} = res;
 
                 // 弹窗提示
-                this.alert_isShow = true;
-                this.messageContent = msg;
+                // this.alert_isShow = true;
+                // this.messageContent = msg;
+                alert(msg);
 
                 if(code === "200"){
                     let timer = setTimeout(()=>{

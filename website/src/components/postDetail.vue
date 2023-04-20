@@ -10,7 +10,7 @@
                 <!-- 帖子信息 -->
                 <div id="post-title" class="clearfix">
                     <div id="post-title-left">
-                        <h2>我是大标题呦</h2>
+                        <h2>{{title}}</h2>
                         <img  :src="postUserVO.headerUrl"><span>{{setName(postUserVO.showRealName, postUserVO.realName, postUserVO.nickName)}}</span><i title="管理员">&#xe67b;</i>
                         <!-- 头像 -->
                         <div class="panel" style="top: 70px;">
@@ -58,8 +58,8 @@
                 </div>
                 <!-- 帖子内容 -->
                 <div id="post-body">
-                    <span>帖子分类：</span><span>一级标签</span> -- <span>二级标签</span> -- <span>三级标签</span>
-                    <br>
+                    <!-- <span>帖子分类：</span><span>一级标签</span> -- <span>二级标签</span> -- <span>三级标签</span>
+                    <br> -->
                     <div id="post" v-html="content"></div>
                 </div>
                 <!-- 上下跳转帖子 -->
@@ -246,7 +246,7 @@ export default {
                 "headerUrl": "http://images.nowcoder.com/head/552t.png"
             },
             title: "这是一个标题21",
-            content: "<h3>你好</h3>",
+            content: "<h3>你好</h3><p>这是一个段落</p><p>这是一个段落</p>",
             createTime: "2023-03-22T07:12:48.000+00:00",
             format: 1,
             locationId: 11,
