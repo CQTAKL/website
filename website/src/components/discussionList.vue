@@ -12,7 +12,7 @@
                 <div class="leftContent">
                     <p>热门标签</p>
                     <ul>
-                        <li v-for="(item, i) in recommendPost" :key=i @click='setData(i+1+"")' :class="{liHover: postIndex==i+1}">{{item}}</li>
+                        <li v-for="(item, i) in recommendPost" :key=i @click='setData(i+1+"", "1")' :class="{liHover: postIndex==i+1}">{{item}}</li>
                     </ul>
                     <img src="../assets/imges/1.gif">
                     <li id="line"></li>
@@ -151,7 +151,7 @@
             </div>
         </div>
 
-        <jumpBar></jumpBar>
+        <jumpBar @turnTo="turnTo" :commentIndex="commentIndex"></jumpBar>
         <myFooter></myFooter>
     </div>
 </template>
@@ -166,6 +166,8 @@ export default ({
     name: 'discussionList',
     data(){
         return {
+            // 当前评论页面
+            commentIndex: 1,
             postIndex: "1",
             recommendPost: ["综合","考研","就业","竞赛/证书","公共课讨论","专业课讨论","旅游","AI人工智能","体育组队","出国","个人随记"],
             passages: [
@@ -193,13 +195,23 @@ export default ({
         }
     },
     methods: {
+        turnTo(index){
+            if(this.commentIndex + index <= 0){
+                this.commentIndex = 1;
+            }else {
+                this.commentIndex += index;
+            }
+            setData(this.postIndex, this.commentIndex);
+            
+        },
+
         toDetail(id){
             this.$router.push({path: '/postDetail?id=' + id});
         },
 
-        setData(index){
+        setData(type,index){
             this.postIndex = index;
-            get("/post/list/" + index).then(res => {
+            get(`/post/list/${type}/${index}`).then(res => {
                 const {code, msg, data} = res;
 
                 if(code === "200"){
@@ -211,7 +223,7 @@ export default ({
     },
     mounted(){
         this.passages = [];
-        this.setData("1");
+        this.setData("1", "1");
         this.passages =  this.passages.reverse();
     },
     components: {

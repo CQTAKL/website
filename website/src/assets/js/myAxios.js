@@ -28,7 +28,7 @@ service.interceptors.request.use(
       config.headers['Authorization'] = -1;
     }
     if(captchaOwner){
-      config.headers['captchaOwner'] = accessToken;
+      config.headers['captchaOwner'] = captchaOwner;
     }else{
       config.headers['captchaOwner'] = -1;
     }

@@ -35,6 +35,12 @@ import createEmojiPlugin from '@kangc/v-md-editor/lib/plugins/emoji/index';
 import '@kangc/v-md-editor/lib/plugins/emoji/emoji.css';
 VueMarkdownEditor.use(createEmojiPlugin());
 
+// 渲染
+import VMdPreviewHtml from '@kangc/v-md-editor/lib/preview-html';
+import '@kangc/v-md-editor/lib/style/preview-html.css';
+
+Vue.use(VMdPreviewHtml);
+
 Vue.use(VueMarkdownEditor);
 
 /* eslint-disable no-new */

@@ -60,7 +60,7 @@
                 <div id="post-body">
                     <!-- <span>帖子分类：</span><span>一级标签</span> -- <span>二级标签</span> -- <span>三级标签</span>
                     <br> -->
-                    <div id="post" v-html="content"></div>
+                    <v-md-preview-html id="post" :html="content" preview-class="vuepress-markdown-body"></v-md-preview-html>
                 </div>
                 <!-- 上下跳转帖子 -->
                 <div id="post-footer" class="clearfix">
@@ -162,7 +162,7 @@
 
                     <!-- 留着复制 -->
                 </ul> 
-                <jumpBar></jumpBar>
+                <jumpBar @turnTo="turnTo" :commentIndex="commentIndex"></jumpBar>
             </div>
             
             <div id="rootInput" class="clearfix">
@@ -234,6 +234,8 @@ export default {
     },
     data(){
         return {
+            // 当前评论索引
+            commentIndex: 1,
             // 当前页面的索引
             index: null,
             id: 10233243,
@@ -246,7 +248,15 @@ export default {
                 "headerUrl": "http://images.nowcoder.com/head/552t.png"
             },
             title: "这是一个标题21",
-            content: "<h3>你好</h3><p>这是一个段落</p><p>这是一个段落</p>",
+            content: `<p data-v-md-line="1">阿斯蒂芬</p>
+<div data-v-md-line="2"><div class="v-md-pre-wrapper v-md-pre-wrapper-language js extra-class"><pre class="v-md-prism-language"><code> const a = 1;
+let b = hellp;
+</code></pre>
+</div></div><ul data-v-md-line="6">
+<li>1目标1</li>
+<li>2目标2</li>
+<li>3目标3</li>
+</ul>`,
             createTime: "2023-03-22T07:12:48.000+00:00",
             format: 1,
             locationId: 11,
@@ -355,6 +365,15 @@ export default {
         setName,
         // 设置地区的位置编号
         setCountryId,
+        turnTo(index){
+            if(this.commentIndex + index <= 0){
+                this.commentIndex = 1;
+            }else {
+                this.commentIndex += index;
+            }
+            console.log(this.commentIndex);
+            
+        },
         // 点赞
         likeClick(i, j){
             post("/count/likeCount", {
@@ -532,7 +551,7 @@ export default {
         this.index = this.$route.query.id;
 
         // 设置数据
-        this.setData();
+        // this.setData();
     }
 }
 </script>

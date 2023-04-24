@@ -15,6 +15,7 @@ import headNav from './childComp/headNav.vue';
 import myFooter from './childComp/myFooter.vue';
 import mdEditor from "./mdEditor.vue";
 import richTextEditor from "./richTextEditor.vue";
+import {get, post} from "@/assets/js/myAxios";
 export default ({
     name: "editor",
     data(){
@@ -43,10 +44,9 @@ export default ({
         },
         commit(){
             console.log(this.content);
-            return;
             post("/post/add/rt", {
                 "userId": "6",
-                "title": "这是一个标题22",
+                "title": this.title,
                 "content": this.content,
                 "columnId": -1
             }).then(res => {
