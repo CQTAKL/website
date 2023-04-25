@@ -551,7 +551,7 @@ let b = hellp;
         this.index = this.$route.query.id;
 
         // 设置数据
-        // this.setData();
+        this.setData();
     }
 }
 </script>

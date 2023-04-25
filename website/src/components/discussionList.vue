@@ -12,11 +12,11 @@
                 <div class="leftContent">
                     <p>热门标签</p>
                     <ul>
-                        <li v-for="(item, i) in recommendPost" :key=i @click='setData(i+1+"", "1")' :class="{liHover: postIndex==i+1}">{{item}}</li>
+                        <li v-for="(item, i) in recommendPost" :key=i @click='setData(i+1+"", 1)' :class="{liHover: postIndex==i+1}">{{item}}</li>
                     </ul>
                     <img src="../assets/imges/1.gif">
                     <li id="line"></li>
-                    <a href="javascript:;" id="myPost">我要发帖</a>
+                    <a href="javascript:;" id="myPost" @click="toPost">我要发帖</a>
                 </div>
 
                 <!-- 中间区域 -->
@@ -75,11 +75,11 @@
                                 <div class="passage_hd clearfix">
                                     <img :src="item.postUserVO.headerUrl">
                                     <span class="name">{{item.postUserVO.showRealName ? item.postUserVO.realName : item.postUserVO.nickName}}</span>
-                                    <span class="v">&#xe67b;</span>
+                                    <!-- <span class="v">&#xe67b;</span> -->
                                     <span class="concern">关注+</span>
-                                    <span class="hot" v-show="true">火热</span>
+                                    <!-- <span class="hot" v-show="true">火热</span>
                                     <span class="prime" v-show="true">精华</span>
-                                    <span class="top" v-show="true">置顶</span>
+                                    <span class="top" v-show="true">置顶</span> -->
                                     
 
                                     <!-- 鼠标悬浮个人头像显示详细内容 -->
@@ -123,12 +123,13 @@
                                 <!-- 文章body -->
                                 <div class="passage_bd">
                                     <h2>{{item.title}}</h2>
-                                    <p>{{item.content}}</p>
+                                    <p :html="item.content" preview-class="vuepress-markdown-body"></p>
+                                    <!-- <p>{{item.content}}</p> -->
                                 </div>
                                 <!-- 文章footer -->
                                 <div class="passage_ft">
                                     <span class="time">{{item.createTime.slice(0,10)}}</span>
-                                    <span class="location">发表于<i>{{item.locationId}}</i></span>
+                                    <span class="location">发表于<i>{{setCountryId(item.locationId)}}</i></span>
                                     <span class="other">&#xe670;</span>
                                     <span class="likes_num">{{item.likeCount}}</span>
                                     <span class="likes">&#xec7f;</span>
@@ -161,6 +162,7 @@ import headNav from './childComp/headNav.vue';
 import myFooter from './childComp/myFooter.vue';
 import announcement from './childComp/announcement.vue';
 import jumpBar from './childComp/jumpBar.vue';
+import {setCountryId} from "@/assets/js/common.js";
 import {get, post} from "@/assets/js/myAxios";
 export default ({
     name: 'discussionList',
@@ -195,13 +197,17 @@ export default ({
         }
     },
     methods: {
+        setCountryId,
+        toPost(){
+            this.$router.push({path: '/editor'});
+        },
         turnTo(index){
             if(this.commentIndex + index <= 0){
                 this.commentIndex = 1;
             }else {
                 this.commentIndex += index;
             }
-            setData(this.postIndex, this.commentIndex);
+            this.setData(this.postIndex, this.commentIndex);
             
         },
 
